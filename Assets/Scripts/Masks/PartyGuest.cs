@@ -29,7 +29,7 @@ namespace Masks
         {
             _camera.Priority = new PrioritySettings
             {
-                Value = 1000,
+                Value = 10,
             };
         }
 
@@ -41,6 +41,14 @@ namespace Masks
             {
                 Value = 0,
             };
+        }
+
+        private Animator? _animator;
+        
+        public void PlayState(string state, float normalizedTiem)
+        {
+            _animator ??= GetComponentInChildren<Animator>();
+            _animator.Play(state, 0, normalizedTiem);
         }
     }
 }

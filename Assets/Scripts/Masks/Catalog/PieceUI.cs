@@ -11,7 +11,7 @@ namespace Masks.Catalog
     {
         [SerializeField] private GameObject _selectedObj;
         [SerializeField] private TextMeshProUGUI _placeholderText;
-        
+
         private MaskPieceSO _pieceSO;
         private Action<PieceUI> _callback;
 
@@ -22,7 +22,7 @@ namespace Masks.Catalog
             _pieceSO = pieceSO;
             _callback = callback;
 
-            _placeholderText.text = pieceSO.name;
+            if (_placeholderText != null) _placeholderText.text = pieceSO.name;
         }
 
         public void OnPointerClick(PointerEventData eventData)

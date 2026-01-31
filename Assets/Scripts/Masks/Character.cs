@@ -16,14 +16,14 @@ namespace Masks
 
         public GameObject Instance { get; set; }
 
-        public Color? Color { get; set; }
+        public ColorSO? Color { get; set; }
     }
 
     public class Character : MonoBehaviour
     {
         [SerializeField] private MaskPiecesCatalogSO _catalogSO;
         [SerializeField] private ColorPaletteSO _colorPaletteSO;
-        
+
         private readonly Dictionary<eMaskPieceLocation, PieceInfo> _currentPieces = new();
 
         private Dictionary<eMaskPieceLocation, MaskPieceAnchorPoint> _anchorsByLocation = new();
@@ -31,7 +31,7 @@ namespace Masks
         public string PlayerName { get; private set; } = "Unknown";
 
         public string Message { get; private set; }
-        
+
         public DateTime AttendanceDate { get; private set; }
 
         private void Awake()
@@ -54,8 +54,10 @@ namespace Masks
             var anchor = _anchorsByLocation[location];
 
             var visual = Instantiate(pieceSO.prefab, anchor.transform);
-
+            visual.transform.localScale = Vector3.one;
+            
             _currentPieces[location].Instance = visual;
+            _currentPieces[location].PieceSO = pieceSO;
         }
 
         public void Load(PlayerData playerData)
@@ -75,39 +77,41 @@ namespace Masks
             {
                 var location = piece.location;
                 var prefabName = piece.prefabName;
-                var color = piece.color;
-
+                
+                var colorSO = _colorPaletteSO.colors.FirstOrDefault(c => c.name == piece.color);
                 var groupSO = _catalogSO.groups.FirstOrDefault(g => g.location == location);
                 var pieceSO = groupSO?.pieces.FirstOrDefault(p => p.prefab.name == prefabName);
 
                 if (pieceSO == null)
                 {
-                    RandomizePiece(location, color);
+                    RandomizePiece(location, colorSO);
                 }
                 else
                 {
                     Load(location, pieceSO);
-                    SetColor(location, color);
+                    SetColor(location, colorSO);
                 }
             }
         }
 
-        public void RandomizeAllPieces() 
+        public void RandomizeAllPieces()
         {
             foreach (eMaskPieceLocation location in Enum.GetValues(typeof(eMaskPieceLocation)))
             {
                 if (location == eMaskPieceLocation.Unknown) continue;
                 RandomizePiece(location, null);
-            }    
+            }
         }
-        
-        public void RandomizePiece(eMaskPieceLocation location, Color? color)
+
+        public void RandomizePiece(eMaskPieceLocation location, ColorSO? color)
         {
             var groupSO = _catalogSO.groups
-                .First(g => g.location == location);
+                .FirstOrDefault(g => g.location == location);
+
+            if (groupSO == null) return;
             
             var randomPieceSO = groupSO.pieces[Random.Range(0, groupSO.pieces.Count)];
-            
+
             Load(location, randomPieceSO);
 
             if (color == null)
@@ -117,11 +121,11 @@ namespace Masks
             }
             else
             {
-                SetColor(location, color.Value);
+                SetColor(location, color);
             }
         }
-        
-        public void SetColor(eMaskPieceLocation location, Color color)
+
+        public void SetColor(eMaskPieceLocation location, ColorSO color)
         {
             if (!_currentPieces.TryGetValue(location, out var piece))
             {
@@ -132,7 +136,7 @@ namespace Masks
 
             foreach (var r in piece.Instance.GetComponentsInChildren<Renderer>())
             {
-                r.material.SetColor("_BaseColor", color);
+                r.material.SetColor("_BaseColor", color.color);
             }
         }
 
@@ -141,7 +145,7 @@ namespace Masks
             return _currentPieces.GetValueOrDefault(location)?.PieceSO;
         }
 
-        public Color? GetColorAtLocation(eMaskPieceLocation location)
+        public ColorSO? GetColorAtLocation(eMaskPieceLocation location)
         {
             return _currentPieces.GetValueOrDefault(location)?.Color;
         }
@@ -155,6 +159,14 @@ namespace Masks
                     yield return value;
                 }
             }
+        }
+
+        private Animator? _animator;
+        
+        public void PlayState(string state, float normalizedTime = 0.0f)
+        {
+            _animator ??= GetComponentInChildren<Animator>();
+            _animator.Play(state, 0, normalizedTime);
         }
     }
 }

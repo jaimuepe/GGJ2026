@@ -3,13 +3,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Masks.Catalog
 {
     public class CatalogUI : MonoBehaviour
     {
+        [SerializeField] private RectTransform _content;
+
+        [SerializeField] private GameObject _blocker;
+
         [SerializeField] private MaskPiecesCatalogSO _catalogSO;
         [SerializeField] private ColorPaletteSO _colorPaletteSO;
 
@@ -25,32 +29,38 @@ namespace Masks.Catalog
         [SerializeField] private Character _character;
 
         [SerializeField] private GameButton _confirmButton;
+        [SerializeField] private GameButton _randomizeButton;
 
-        [SerializeField] private GameObject _loadingObj;
-
+        [SerializeField] private DetailsUI _detailsUI;
+        
         private readonly List<CatalogTabUI> _tabs = new();
         private readonly List<PieceUI> _pieces = new();
         private readonly List<ColorUI> _colors = new();
 
         private CatalogTabUI _activeTab;
-        private Color _activeColor;
+        private ColorSO _activeColor;
 
         private void Awake()
         {
             _tabTemplate.gameObject.SetActive(false);
             _pieceTemplate.gameObject.SetActive(false);
             _colorTemplate.gameObject.SetActive(false);
-            _loadingObj.SetActive(false);
+
+            _content.anchoredPosition = new Vector2(0.0f, -1200.0f);
+
+            _blocker.SetActive(true);
         }
 
         private void OnEnable()
         {
             _confirmButton.onClick += Confirm;
+            _randomizeButton.onClick += Randomize;
         }
 
         private void OnDisable()
         {
             _confirmButton.onClick -= Confirm;
+            _randomizeButton.onClick -= Randomize;
         }
 
         private void Start()
@@ -80,10 +90,16 @@ namespace Masks.Catalog
 
             SelectTab(_tabs[0]);
             SelectColor(_colors[0].Color);
+
+            var seq = DOTween.Sequence();
+            seq.AppendInterval(0.1f);
+            seq.Append(_content.DOAnchorPosY(0.0f, 0.5f).SetEase(Ease.OutBack));
+            seq.AppendCallback(() => { _blocker.SetActive(false); });
         }
 
         private void OnTabClicked(CatalogTabUI tab)
         {
+            if (_activeTab == tab) return;
             SelectTab(tab);
         }
 
@@ -128,6 +144,11 @@ namespace Masks.Catalog
 
         private void OnPieceClicked(PieceUI piece)
         {
+            if (_character.GetPieceAtLocation(_activeTab.Location) == piece.PieceSO)
+            {
+                return;
+            }
+
             SelectPiece(piece.PieceSO);
         }
 
@@ -147,16 +168,21 @@ namespace Masks.Catalog
             }
             else
             {
-                SelectColor(appliedColor.Value);
+                SelectColor(appliedColor);
             }
         }
 
         private void OnColorClicked(ColorUI color)
         {
+            if (_character.GetColorAtLocation(_activeTab.Location) == color.Color)
+            {
+                return;
+            }
+
             SelectColor(color.Color);
         }
 
-        private void SelectColor(Color colorToSelect)
+        private void SelectColor(ColorSO colorToSelect)
         {
             foreach (var color in _colors)
             {
@@ -176,67 +202,28 @@ namespace Masks.Catalog
             _confirmCor = StartCoroutine(ConfirmCor());
         }
 
+        private void Randomize()
+        {
+            _character.RandomizeAllPieces();
+
+            SelectPiece(_character.GetPieceAtLocation(_activeTab.Location));
+            SelectColor(_character.GetColorAtLocation(_activeTab.Location));
+        }
+
         private IEnumerator ConfirmCor()
         {
-            _loadingObj.SetActive(true);
-
-            var server = FindFirstObjectByType<Server>();
-
-            string? errorMsg = null;
-            var completed = false;
-
-            server.Send(
-                _character,
-                () => completed = true,
-                errCode =>
-                {
-                    errorMsg = errCode;
-                    completed = true;
-                });
-
-            yield return new WaitUntil(() => completed);
-
-            if (errorMsg != null)
-            {
-                Debug.LogError($"Error = {errorMsg}");
-            }
-
-            PersistentStoreObject.Instance.Store(_character);
-
-            var partyGuests = new List<PlayerData>();
-
-            completed = false;
-            errorMsg = null;
+            _blocker.SetActive(true);
             
-            server.RetrieveOtherPlayers(
-                playersData =>
-                {
-                    if (playersData != null)
-                    {
-                        partyGuests = playersData;
-                    }
+            var seq = DOTween.Sequence();
+            seq.Append(_content.DOAnchorPosY(-1200.0f, 0.5f).SetEase(Ease.InBack));
+            seq.AppendCallback(() => { _blocker.SetActive(false); });
 
-                    completed = true;
-                },
-                errCode =>
-                {
-                    errorMsg = errCode;
-                    completed = true;
-                });
+            yield return seq.WaitForCompletion();
 
-            yield return new WaitUntil(() => completed);
-
-            if (errorMsg != null)
-            {
-                Debug.LogError($"Error = {errorMsg}");
-            }
-
-            PersistentStoreObject.Instance.StorePartyGuests(partyGuests);
-
-            _loadingObj.SetActive(false);
+            _blocker.SetActive(false);
             
-            yield return SceneManager.LoadSceneAsync("Test_Party");
-            
+            _detailsUI.Show();
+
             _confirmCor = null;
         }
     }

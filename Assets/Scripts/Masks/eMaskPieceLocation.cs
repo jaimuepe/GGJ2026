@@ -3,7 +3,10 @@
     public enum eMaskPieceLocation
     {
         Unknown,
-        Eyes,
-        Top,
+        Base,
+        Eye,
+        Eyebrows,
+        Nose,
+        Mouth,
     }
 }

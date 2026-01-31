@@ -18,7 +18,7 @@ namespace Masks.Interactions
 
         private Coroutine? _interactCor;
 
-        private PartyGuestCanvasInfo _canvasInfo;
+        private PartyGuestCanvas _canvas;
 
         private bool _canCaptureInput;
         private bool _hasReceivedInput;
@@ -26,7 +26,7 @@ namespace Masks.Interactions
         private void Start()
         {
             _partyGuest = GetComponentInParent<PartyGuest>();
-            _canvasInfo = FindFirstObjectByType<PartyGuestCanvasInfo>();
+            _canvas = FindFirstObjectByType<PartyGuestCanvas>();
             Assert.IsNotNull(_partyGuest);
         }
 
@@ -36,7 +36,7 @@ namespace Masks.Interactions
 
             _canCaptureInput = false;
             _hasReceivedInput = false;
-            HasInteractionStarted = false;
+            HasInteractionStarted = true;
             IsInteractionCompleted = false;
             
             _interactCor = StartCoroutine(InteractCor());
@@ -58,7 +58,6 @@ namespace Masks.Interactions
 
         private IEnumerator InteractCor()
         {
-            HasInteractionStarted = true;
             _canCaptureInput = false;
             
             _partyGuest.ZoomIn();
@@ -69,8 +68,8 @@ namespace Masks.Interactions
                 yield return new WaitUntil(() => !_partyGuest.CameraIsBlending());
             }
             
-            _canvasInfo.SetData(_partyGuest.Character);
-            _canvasInfo.Show();
+            _canvas.SetData(_partyGuest.Character);
+            _canvas.Show();
             
             yield return new WaitForSeconds(1.0f);
 
@@ -78,7 +77,7 @@ namespace Masks.Interactions
 
             yield return new WaitUntil(() => _hasReceivedInput);
             
-            _canvasInfo.Hide();
+            _canvas.Hide();
             
             _partyGuest.ZoomOut();
 

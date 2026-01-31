@@ -9,25 +9,24 @@ namespace Masks.Catalog
 {
     public class ColorUI : MonoBehaviour, IPointerClickHandler
     {
-        [SerializeField] private GameObject _selectedObj;
         [SerializeField] private Image _colorImage;
         
-        private Color _color;
+        private ColorSO _color;
         private Action<ColorUI> _callback;
 
-        public Color Color => _color;
+        public ColorSO Color => _color;
         
-        public void SetData(Color color, Action<ColorUI> callback)
+        public void SetData(ColorSO color, Action<ColorUI> callback)
         {
             _color = color;
             _callback = callback;
 
-            _colorImage.color = color;
+            _colorImage.sprite = color.preview_inactive;
         }
         
         public void SetSelected(bool b)
         {
-            _selectedObj.SetActive(b);
+            _colorImage.sprite = b ? _color.preview_active : _color.preview_inactive;
         }
 
         public void OnPointerClick(PointerEventData eventData)

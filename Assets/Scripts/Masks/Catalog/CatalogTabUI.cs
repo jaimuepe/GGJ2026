@@ -11,13 +11,13 @@ namespace Masks.Catalog
     {
         [SerializeField] private GameObject _selectedObj;
         [SerializeField] private TextMeshProUGUI _placeholderText;
-        
+
         private MaskPieceGroupSO _groupDataSO;
-        
+
         private Action<CatalogTabUI> _onTabClicked;
 
         public eMaskPieceLocation Location => _groupDataSO.location;
-        
+
         public void OnPointerClick(PointerEventData eventData)
         {
             _onTabClicked.Invoke(this);
@@ -28,7 +28,10 @@ namespace Masks.Catalog
             _groupDataSO = groupDataSO;
             _onTabClicked = onTabClicked;
 
-            _placeholderText.text = _groupDataSO.location.ToString();
+            if (_placeholderText != null)
+            {
+                _placeholderText.text = _groupDataSO.location.ToString();
+            }
         }
 
         public void SetSelected(bool b)

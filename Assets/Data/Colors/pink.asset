@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06bf59f0bd444644eb3f6b94f3b359cd, type: 3}
+  m_Name: pink
+  m_EditorClassIdentifier: Assembly-CSharp::Masks.ColorSO
+  color: {r: 0.93725497, g: 0.34901962, b: 0.9450981, a: 1}
+  preview_active: {fileID: 21300000, guid: 1e120d9f3cc75f54ab386b15252e6d05, type: 3}
+  preview_inactive: {fileID: 21300000, guid: 02f054846d53ab1468d1fd2e68b5a0b7, type: 3}

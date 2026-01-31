@@ -8,6 +8,6 @@ namespace Masks
     [CreateAssetMenu(fileName = "ColorPalette", menuName = "ScriptableObjects/ColorPalette", order = 1)]
     public class ColorPaletteSO : ScriptableObject
     {
-        public List<Color> colors = new();
+        public List<ColorSO> colors = new();
     }
 }

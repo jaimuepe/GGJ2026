@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a513b8ad4fd34026ab32df381c6bd12d, type: 3}
+  m_Name: _ColorPalette
+  m_EditorClassIdentifier: Assembly-CSharp::Masks.ColorPaletteSO
+  colors:
+  - {fileID: 11400000, guid: 210b456805d611141bcca752b1a13b32, type: 2}
+  - {fileID: 11400000, guid: e3aa4bf1544fa5f438ab44ac650ad847, type: 2}
+  - {fileID: 11400000, guid: e632da664169af844ae71659ffd58302, type: 2}
+  - {fileID: 11400000, guid: 3d513dcb2c01b4f44818749faae83ea3, type: 2}
+  - {fileID: 11400000, guid: a7125f4c2d62dda4fbfe4a0b94c14f4f, type: 2}
+  - {fileID: 11400000, guid: 09fbd067c52f0ca459d95e41b1cc9a5a, type: 2}

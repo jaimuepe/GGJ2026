@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Masks
 {
@@ -32,7 +31,7 @@ namespace Masks
                 .Select(i => new PieceData
                 {
                     prefabName = i.PieceSO.prefab.name,
-                    color = i.Color ?? Color.white,
+                    color = i.Color?.name ?? "white",
                     location = i.Location,
                 })
                 .ToList();
@@ -46,6 +45,6 @@ namespace Masks
 
         [SerializeField] public string prefabName;
 
-        [SerializeField] public Color color;
+        [SerializeField] public string color;
     }
 }
