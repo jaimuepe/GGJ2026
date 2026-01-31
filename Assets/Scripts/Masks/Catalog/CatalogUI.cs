@@ -11,6 +11,7 @@ namespace Masks.Catalog
     public class CatalogUI : MonoBehaviour
     {
         [SerializeField] private RectTransform _content;
+        [SerializeField] private RectTransform _titleLabel;
 
         [SerializeField] private GameObject _blocker;
 
@@ -32,7 +33,7 @@ namespace Masks.Catalog
         [SerializeField] private GameButton _randomizeButton;
 
         [SerializeField] private DetailsUI _detailsUI;
-        
+
         private readonly List<CatalogTabUI> _tabs = new();
         private readonly List<PieceUI> _pieces = new();
         private readonly List<ColorUI> _colors = new();
@@ -47,6 +48,7 @@ namespace Masks.Catalog
             _colorTemplate.gameObject.SetActive(false);
 
             _content.anchoredPosition = new Vector2(0.0f, -1200.0f);
+            _titleLabel.anchoredPosition = new Vector2(0.0f, -1200.0f);
 
             _blocker.SetActive(true);
         }
@@ -94,6 +96,7 @@ namespace Masks.Catalog
             var seq = DOTween.Sequence();
             seq.AppendInterval(0.1f);
             seq.Append(_content.DOAnchorPosY(0.0f, 0.5f).SetEase(Ease.OutBack));
+            seq.Insert(0.3f, _titleLabel.DOAnchorPosY(0.0f, 0.5f).SetEase(Ease.OutBack));
             seq.AppendCallback(() => { _blocker.SetActive(false); });
         }
 
@@ -213,15 +216,16 @@ namespace Masks.Catalog
         private IEnumerator ConfirmCor()
         {
             _blocker.SetActive(true);
-            
+
             var seq = DOTween.Sequence();
-            seq.Append(_content.DOAnchorPosY(-1200.0f, 0.5f).SetEase(Ease.InBack));
+            seq.Append(_titleLabel.DOAnchorPosY(-1200.0f, 0.5f).SetEase(Ease.InBack));
+            seq.Insert(0.3f, _content.DOAnchorPosY(-1200.0f, 0.5f).SetEase(Ease.InBack));
             seq.AppendCallback(() => { _blocker.SetActive(false); });
 
             yield return seq.WaitForCompletion();
 
             _blocker.SetActive(false);
-            
+
             _detailsUI.Show();
 
             _confirmCor = null;

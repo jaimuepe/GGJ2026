@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5024f2099ca7462d9cd4cc532600c2d7, type: 3}
-  m_Name: _TopGroup
+  m_Name: _EyebrowsGroup
   m_EditorClassIdentifier: Assembly-CSharp::Masks.MaskPieceGroupSO
-  location: 2
+  location: 3
   offset: {x: 0, y: 0, z: 0}
   pieces:
-  - {fileID: 11400000, guid: 91fa1bc8661e5164f8f8825a8d70eefc, type: 2}
-  - {fileID: 11400000, guid: 758645ab8ff0f764c997373ee1accc7f, type: 2}
+  - {fileID: 11400000, guid: bd35ac1cebb22734ab86d8a6c038bd17, type: 2}
+  - {fileID: 11400000, guid: 7d9def086de5d7c4fa0088276a97a5b3, type: 2}
+  - {fileID: 11400000, guid: 588e1aaa544ce1041b9d4d4d34fdc00e, type: 2}
+  - {fileID: 11400000, guid: c5744b55b28c5cc4d8fd6366ba7efad2, type: 2}
+  - {fileID: 11400000, guid: 38abd8df99ce48841aec04c230cc9be6, type: 2}
+  - {fileID: 11400000, guid: b74f6cd28c31a2d469dfb9c26eb3fa9e, type: 2}
   icon: {fileID: 0}

@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a21409280f647b2929cfc12fa59f33c, type: 3}
-  m_Name: Top_01
+  m_Name: Eyebrows_01
   m_EditorClassIdentifier: Assembly-CSharp::Masks.MaskPieceSO
-  prefab: {fileID: 1802943919366287792, guid: 64783e787ff2f134b848099ca6c0cae1, type: 3}
+  prefab: {fileID: 919132149155446097, guid: 6d850b70558b32443a0aeb43a9b079f5, type: 3}

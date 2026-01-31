@@ -12,6 +12,8 @@ namespace Masks.Catalog
     public class DetailsUI : MonoBehaviour
     {
         [SerializeField] private RectTransform _content;
+        [SerializeField] private RectTransform _titleContent;
+        
         [SerializeField] private GameButton _confirmButton;
 
         [SerializeField] private GameObject _blocker;
@@ -34,14 +36,16 @@ namespace Masks.Catalog
             _blocker.SetActive(true);
 
             var seq = DOTween.Sequence();
-            seq.AppendInterval(0.1f);
             seq.Append(_content.DOAnchorPosY(0.0f, 0.5f).SetEase(Ease.OutBack));
+            seq.Insert(0.3f, _titleContent.DOAnchorPosY(0.0f, 0.5f).SetEase(Ease.OutBack));
             seq.AppendCallback(() => { _blocker.SetActive(false); });
         }
 
         private void Awake()
         {
             _content.anchoredPosition = new Vector2(0.0f, -1200.0f);
+            _titleContent.anchoredPosition = new Vector2(0.0f, -1200.0f);
+            
             _loadingObj.SetActive(false);
         }
 
