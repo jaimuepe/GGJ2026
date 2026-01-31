@@ -992,6 +992,8 @@ MonoBehaviour:
   _nameField: {fileID: 1037097149}
   _messageCounter: {fileID: 720061950}
   _nameCounter: {fileID: 1387014368}
+  _minMessageLength: 5
+  _minNameLength: 3
 --- !u!1 &331244116
 GameObject:
   m_ObjectHideFlags: 0
@@ -5583,8 +5585,8 @@ MonoBehaviour:
   m_Texture: {fileID: 2800000, guid: da328c517fd0ad0409c7813f685a80e5, type: 3}
   m_UVRect:
     serializedVersion: 2
-    x: 12.9993515
-    y: 12.9993515
+    x: 0.29523093
+    y: 0.29523093
     width: 8
     height: 4.5
 --- !u!222 &1560358548
