@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5024f2099ca7462d9cd4cc532600c2d7, type: 3}
+  m_Name: _NoseGroup
+  m_EditorClassIdentifier: Assembly-CSharp::Masks.MaskPieceGroupSO
+  location: 4
+  offset: {x: 0, y: 0, z: 0}
+  pieces:
+  - {fileID: 11400000, guid: 6945b0e76db4634429f1bbcc90ba923a, type: 2}
+  - {fileID: 11400000, guid: 64500802354fe234b970daff1c609fbe, type: 2}
+  - {fileID: 11400000, guid: 4f9d5f46d00372f4d8b35a1fdea2a800, type: 2}
+  - {fileID: 11400000, guid: d799c315a4744c44794be4d1a602b58d, type: 2}
+  - {fileID: 11400000, guid: 96e15f11e447fd947a7ff59cb3f2fe29, type: 2}
+  - {fileID: 11400000, guid: 6c5e38632cdb7d645a86a8a98cd12621, type: 2}
+  icon: {fileID: 0}
