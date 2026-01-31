@@ -8,5 +8,7 @@ namespace Masks
     public class MaskPieceSO : ScriptableObject
     {
         [SerializeField] public GameObject prefab;
+
+        [SerializeField] public Sprite sprite;
     }
 }

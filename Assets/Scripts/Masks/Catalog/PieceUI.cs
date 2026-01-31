@@ -4,6 +4,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Masks.Catalog
 {
@@ -12,6 +13,11 @@ namespace Masks.Catalog
         [SerializeField] private GameObject _selectedObj;
         [SerializeField] private TextMeshProUGUI _placeholderText;
 
+        [SerializeField] private Image _icon;
+
+        [SerializeField] private Color _selectedColor;
+        [SerializeField] private Color _deelectedColor;
+        
         private MaskPieceSO _pieceSO;
         private Action<PieceUI> _callback;
 
@@ -22,7 +28,9 @@ namespace Masks.Catalog
             _pieceSO = pieceSO;
             _callback = callback;
 
-            if (_placeholderText != null) _placeholderText.text = pieceSO.name;
+            _icon.sprite = pieceSO.sprite;
+            
+            UpdateColor(false);
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -33,6 +41,12 @@ namespace Masks.Catalog
         public void SetSelected(bool b)
         {
             _selectedObj.SetActive(b);
+            UpdateColor(b);
+        }
+
+        private void UpdateColor(bool selected)
+        {
+            _icon.color = selected ? _selectedColor : _deelectedColor;
         }
     }
 }
