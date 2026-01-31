@@ -107,29 +107,19 @@ namespace Masks.Interactions
         {
             _characterController.enabled = false;
 
-            SetLayerRecursive(_visualsObject, LayerMask.NameToLayer("Invisible"));
+            Utils.SetLayerRecursive(_visualsObject, LayerMask.NameToLayer("Invisible"));
 
             _current!.Interact();
             HideBubble();
 
             yield return new WaitUntil(() => _current.IsInteractionCompleted);
             
-            SetLayerRecursive(_visualsObject, LayerMask.NameToLayer("Default"));
+            Utils.SetLayerRecursive(_visualsObject, LayerMask.NameToLayer("Default"));
             
             _current = null;
             _interactCor = null;
 
             _characterController.enabled = true;
-        }
-
-        private static void SetLayerRecursive(GameObject obj, int layer)
-        {
-            obj.layer = layer;
-
-            foreach (Transform t in obj.transform)
-            {
-                SetLayerRecursive(t.gameObject, layer);
-            }
         }
     }
 }

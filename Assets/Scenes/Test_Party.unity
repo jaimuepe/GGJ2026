@@ -1528,6 +1528,7 @@ MonoBehaviour:
   _birthdayBoy: {fileID: 165091632}
   _cinematicStartCamera: {fileID: 1228257874}
   _cinematicEndCamera: {fileID: 1841761490}
+  _playerVisualsObject: {fileID: 251807883973396231}
 --- !u!4 &553226521
 Transform:
   m_ObjectHideFlags: 0
@@ -3804,7 +3805,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9104479610453370885, guid: b5266785a2c698740ac4ed98750d8bfe, type: 3}
   m_PrefabInstance: {fileID: 251807883973396230}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 251807883973396231}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0551d3070c324511a04873d319b1307b, type: 3}
@@ -4391,6 +4392,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5266785a2c698740ac4ed98750d8bfe, type: 3}
+--- !u!1 &251807883973396231 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1334209596051836729, guid: b5266785a2c698740ac4ed98750d8bfe, type: 3}
+  m_PrefabInstance: {fileID: 251807883973396230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2119775929640375061 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7434554441153623179, guid: b5266785a2c698740ac4ed98750d8bfe, type: 3}

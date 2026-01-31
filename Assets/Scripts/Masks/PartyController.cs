@@ -20,6 +20,8 @@ namespace Masks
         [SerializeField] private CinemachineCamera _cinematicStartCamera;
         [SerializeField] private CinemachineCamera _cinematicEndCamera;
 
+        [SerializeField] private GameObject _playerVisualsObject;
+        
         private readonly List<PartyGuest> _guests = new();
 
         private List<PartyGuestSlot> _partyGuestSlots;
@@ -92,8 +94,8 @@ namespace Masks
 
             yield return new WaitForSeconds(1.0f);
 
-            // TODO move all party attendants
-
+            Utils.SetLayerRecursive(_playerVisualsObject, LayerMask.NameToLayer("Default"));
+            
             _birthdayBoy.PlayState("Idle", Random.value);
             _playableCharacter.PlayState("Idle", Random.value);
 
