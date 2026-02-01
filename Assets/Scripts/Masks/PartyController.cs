@@ -176,7 +176,7 @@ namespace Masks
                 _guests[i].PlayState(restOfSlots[i].cheerAnimation, offset);
             }
 
-            StartCoroutine(ShowRandomMessagesCor(_guests));
+            var messagesCor = StartCoroutine(ShowRandomMessagesCor(_guests));
 
             yield return new WaitForSeconds(5.0f);
 
@@ -190,6 +190,8 @@ namespace Masks
 
             yield return FlashCanvasUI.Instance.ShowCor();
 
+            StopCoroutine(messagesCor);
+            
             yield return SceneManager.LoadSceneAsync("Polaroid");
 
             yield return FlashCanvasUI.Instance.HideCor();
