@@ -6505,8 +6505,8 @@ MonoBehaviour:
   m_Texture: {fileID: 2800000, guid: da328c517fd0ad0409c7813f685a80e5, type: 3}
   m_UVRect:
     serializedVersion: 2
-    x: 0.8620057
-    y: 0.8620057
+    x: 2.3624809
+    y: 2.3624809
     width: 8
     height: 4.5
 --- !u!222 &1560358548
@@ -8620,6 +8620,10 @@ PrefabInstance:
     - target: {fileID: 4631766920525233698, guid: ac22a77f81590d2438dd0ab215ab2237, type: 3}
       propertyPath: m_Name
       value: CharacterStub
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861718208675423320, guid: ac22a77f81590d2438dd0ab215ab2237, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
