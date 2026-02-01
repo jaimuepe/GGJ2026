@@ -3052,6 +3052,11 @@ MonoBehaviour:
   _content: {fileID: 1701527502}
   _enabledVisuals: {fileID: 0}
   _disabledVisuals: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _clips:
+  - {fileID: 8300000, guid: d90cc8f84a94b23438316564c2958b58, type: 3}
+  - {fileID: 8300000, guid: 4d36e3799d7b0d9438314450c5132961, type: 3}
+  - {fileID: 8300000, guid: 44feb12bd33cb9941b126311a8cc30df, type: 3}
 --- !u!1001 &1071956795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4907,6 +4912,11 @@ MonoBehaviour:
   _content: {fileID: 1711901245}
   _enabledVisuals: {fileID: 0}
   _disabledVisuals: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _clips:
+  - {fileID: 8300000, guid: d90cc8f84a94b23438316564c2958b58, type: 3}
+  - {fileID: 8300000, guid: 4d36e3799d7b0d9438314450c5132961, type: 3}
+  - {fileID: 8300000, guid: 44feb12bd33cb9941b126311a8cc30df, type: 3}
 --- !u!1 &1880592189
 GameObject:
   m_ObjectHideFlags: 0
@@ -5160,6 +5170,11 @@ MonoBehaviour:
   _content: {fileID: 1515239411}
   _enabledVisuals: {fileID: 0}
   _disabledVisuals: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _clips:
+  - {fileID: 8300000, guid: d90cc8f84a94b23438316564c2958b58, type: 3}
+  - {fileID: 8300000, guid: 4d36e3799d7b0d9438314450c5132961, type: 3}
+  - {fileID: 8300000, guid: 44feb12bd33cb9941b126311a8cc30df, type: 3}
 --- !u!1 &2049092110
 GameObject:
   m_ObjectHideFlags: 0

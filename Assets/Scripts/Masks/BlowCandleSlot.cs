@@ -8,6 +8,7 @@ namespace Masks
     public class BlowCandleSlot : MonoBehaviour
     {
         [SerializeField] public bool reservedForPlayer;
+        [SerializeField] public bool reservedForBirthdayKid;
         [SerializeField] public string cheerAnimation = "Clap";
         
 #if UNITY_EDITOR

@@ -16,11 +16,13 @@ namespace Masks
 
         [SerializeField] private CinemachineBrain _brain;
 
-        [SerializeField] private Canvas _overlayCanvas;
+        [SerializeField] private BubbleMessageUI _bubble;
         
         private void Start()
         {
             _birthdayKid.Character.ChangeFace("Sad");
+            _bubble.SetData(null, "I wish... I wish for someone to come to my next birthday!");
+            
             StartCoroutine(Play());
         }
 
@@ -36,15 +38,11 @@ namespace Masks
 
             yield return new WaitForSeconds(0.5f);
             
-            var bubble = Instantiate(_bubbleMessagePrefab, _overlayCanvas.transform, false);
-            bubble.SetData(_birthdayKid.bubbleAnchor, "I wish... for everyone to come on my next birthday!");
-            bubble.gameObject.SetActive(true);
-            
-            bubble.Show(duration: 2.0f);
+            _bubble.Show(duration: 2.5f);
             
             yield return new WaitForSeconds(3.0f);
             
-            _birthdayKid.PlayState("BlowCandles", 0.0f);
+            _birthdayKid.PlayState("BlowCandles_Sad", 0.0f);
 
             yield return new WaitForSeconds(3.0f);
 
