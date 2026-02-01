@@ -28,7 +28,7 @@ namespace Masks.Catalog
         [SerializeField] private TextMeshProUGUI _nameCounter;
 
         [SerializeField] private int _minMessageLength = 5;
-        [SerializeField] private int _minNameLength = 3;
+        [SerializeField] private int _minNameLength = 4;
 
         public void Show()
         {
