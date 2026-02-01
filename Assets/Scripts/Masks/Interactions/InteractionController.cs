@@ -11,7 +11,7 @@ namespace Masks.Interactions
     {
         [SerializeField] private BoxCollider _interactableShape;
         [SerializeField] private LayerMask _interactableMask;
-        [SerializeField] private GameObject _bubble;
+        [SerializeField] private InteractionBubbleUI _bubble;
         [SerializeField] private PlayerInput _playerInput;
 
         [SerializeField] private GameObject _visualsObject;
@@ -89,12 +89,12 @@ namespace Masks.Interactions
 
         private void ShowBubble()
         {
-            _bubble.SetActive(true);
+            _bubble.Show();
         }
 
         private void HideBubble()
         {
-            _bubble.SetActive(false);
+            _bubble.Hide();
         }
 
         private void Interact()

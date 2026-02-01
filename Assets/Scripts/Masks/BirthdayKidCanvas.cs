@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -67,16 +68,27 @@ namespace Masks
 
         private void BlowCandles()
         {
+            if (IsBlowingTheCandles) return;
+            
             IsBlowingTheCandles = true;
 
-            Hide();
+            StartCoroutine(BlowCandlesCor());
+        }
 
+        private IEnumerator BlowCandlesCor()
+        {
+            Hide();
+            
+            yield return new WaitUntil(IsVisible);
+            yield return new WaitWhile(IsVisible);
+            
             var partyController = FindFirstObjectByType<PartyController>();
             partyController.BlowCandles();
         }
 
         private void GoBack()
         {
+            if (IsBlowingTheCandles) return;
             Hide();
         }
 

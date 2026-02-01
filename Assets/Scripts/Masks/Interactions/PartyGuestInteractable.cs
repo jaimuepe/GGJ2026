@@ -8,7 +8,7 @@ namespace Masks.Interactions
 {
     public class PartyGuestInteractable : MonoBehaviour, IInteractable
     {
-        public bool NeedsInput => true;
+        public bool NeedsInput => false;
         
         public bool HasInteractionStarted { get; private set; }
 
@@ -20,9 +20,6 @@ namespace Masks.Interactions
 
         private PartyGuestCanvas _canvas;
 
-        private bool _canCaptureInput;
-        private bool _hasReceivedInput;
-        
         private void Start()
         {
             _partyGuest = GetComponentInParent<PartyGuest>();
@@ -34,8 +31,6 @@ namespace Masks.Interactions
         {
             if (_interactCor != null) return;
 
-            _canCaptureInput = false;
-            _hasReceivedInput = false;
             HasInteractionStarted = true;
             IsInteractionCompleted = false;
             
@@ -52,14 +47,10 @@ namespace Masks.Interactions
         
         public void ReceiveInput()
         {
-            if (!_canCaptureInput) return;
-            _hasReceivedInput = true;
         }
 
         private IEnumerator InteractCor()
         {
-            _canCaptureInput = false;
-            
             _partyGuest.ZoomIn();
             
             yield return new WaitUntil(() => _partyGuest.CameraIsBlending());
@@ -68,14 +59,9 @@ namespace Masks.Interactions
             _canvas.SetData(_partyGuest.Character);
             _canvas.Show();
             
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitUntil(() => _canvas.IsVisible());
+            yield return new WaitWhile(() => _canvas.IsVisible());
 
-            _canCaptureInput = true;
-
-            yield return new WaitUntil(() => _hasReceivedInput);
-            
-            _canvas.Hide();
-            
             _partyGuest.ZoomOut();
             
             yield return new WaitUntil(() => _partyGuest.CameraIsBlending());

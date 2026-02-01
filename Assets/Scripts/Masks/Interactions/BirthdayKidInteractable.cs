@@ -55,7 +55,6 @@ namespace Masks.Interactions
             canvas.Show();
 
             yield return new WaitUntil(() => canvas.IsVisible());
-
             yield return new WaitWhile(() => canvas.IsVisible());
 
             if (canvas.IsBlowingTheCandles) yield break;
