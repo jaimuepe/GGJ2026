@@ -21,7 +21,7 @@ namespace Masks
         private void Start()
         {
             _birthdayKid.Character.ChangeFace("Sad");
-            _bubble.SetData(null, "I wish... I wish for someone to come to my next birthday!");
+            _bubble.SetData(null, "I wish... I wish someone comes to my next birthday!");
             
             StartCoroutine(Play());
         }
