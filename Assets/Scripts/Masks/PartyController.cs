@@ -95,6 +95,9 @@ namespace Masks
 
             Utils.SetLayerRecursive(_playerVisualsObject, LayerMask.NameToLayer("Default"));
 
+            _birthdayBoy.Character.RemoveMask();
+            _birthdayBoy.Character.ChangeFace("Happy");
+            
             _birthdayBoy.PlayState("IdleForced", Random.value);
             _playableCharacter.PlayState("IdleForced", Random.value);
 
@@ -104,28 +107,22 @@ namespace Masks
             }
 
             var slots = FindObjectsByType<BlowCandleSlot>(FindObjectsSortMode.None);
+            
             var playerSlot = slots.FirstOrDefault(s => s.reservedForPlayer);
-
+            var birthdayKidSlot = slots.FirstOrDefault(s => s.reservedForBirthdayKid);
+            
             var restOfSlots = slots
-                .Where(s => !s.reservedForPlayer)
+                .Where(s => !s.reservedForPlayer && !s.reservedForBirthdayKid)
                 .OrderBy(s => Random.value)
                 .ToList();
 
-            if (playerSlot != null)
-            {
-                _playableCharacter.transform.SetPositionAndRotation(
-                    playerSlot.transform.position,
-                    playerSlot.transform.rotation);
-            }
-            else
-            {
-                playerSlot = restOfSlots[0];
-                restOfSlots.RemoveAt(0);
-
-                _playableCharacter.transform.SetPositionAndRotation(
-                    playerSlot.transform.position,
-                    playerSlot.transform.rotation);
-            }
+            _birthdayBoy.transform.SetPositionAndRotation(
+                birthdayKidSlot.transform.position,
+                birthdayKidSlot.transform.rotation);
+            
+            _playableCharacter.transform.SetPositionAndRotation(
+                playerSlot.transform.position,
+                playerSlot.transform.rotation);
 
             var n = Mathf.Min(_guests.Count, restOfSlots.Count);
 
@@ -165,6 +162,10 @@ namespace Masks
             }
 
             yield return new WaitForSeconds(1.0f);
+            
+            _birthdayBoy.PlayState("BlowCandles_Happy", 0.0f);
+
+            yield return new WaitForSeconds(3.0f);
 
             var offset = playerSlot.cheerAnimation == "Clap" ? Random.value : 0.0f;
             _playableCharacter.PlayState(playerSlot.cheerAnimation, offset);

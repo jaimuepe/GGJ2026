@@ -927,6 +927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  reservedForBirthdayKid: 0
   cheerAnimation: Clap
 --- !u!1 &195399380
 GameObject:
@@ -1259,7 +1260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c60e050e9b2049ed84e250121496dad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
-  reservedForPlayer: 1
+  reservedForPlayer: 0
+  reservedForBirthdayKid: 1
   cheerAnimation: Clap
 --- !u!1 &255792430
 GameObject:
@@ -2034,6 +2036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  reservedForBirthdayKid: 0
   cheerAnimation: Jump_01
 --- !u!1 &412606399
 GameObject:
@@ -2185,6 +2188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 1
+  reservedForBirthdayKid: 0
   cheerAnimation: Clap
 --- !u!1001 &488362530
 PrefabInstance:
@@ -3234,6 +3238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  reservedForBirthdayKid: 0
   cheerAnimation: Jump_01
 --- !u!1 &895476694
 GameObject:
@@ -3281,6 +3286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  reservedForBirthdayKid: 0
   cheerAnimation: Dance_01
 --- !u!114 &924491063 stripped
 MonoBehaviour:
@@ -3929,6 +3935,11 @@ MonoBehaviour:
   _content: {fileID: 1701527502}
   _enabledVisuals: {fileID: 0}
   _disabledVisuals: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _clips:
+  - {fileID: 8300000, guid: d90cc8f84a94b23438316564c2958b58, type: 3}
+  - {fileID: 8300000, guid: 4d36e3799d7b0d9438314450c5132961, type: 3}
+  - {fileID: 8300000, guid: 44feb12bd33cb9941b126311a8cc30df, type: 3}
 --- !u!1001 &1071956795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4158,6 +4169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  reservedForBirthdayKid: 0
   cheerAnimation: Jump_01
 --- !u!1 &1096459422
 GameObject:
@@ -4205,6 +4217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  reservedForBirthdayKid: 0
   cheerAnimation: Clap
 --- !u!1 &1100098584
 GameObject:
@@ -4252,6 +4265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  reservedForBirthdayKid: 0
   cheerAnimation: Clap
 --- !u!1 &1128028561
 GameObject:
@@ -5016,6 +5030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  reservedForBirthdayKid: 0
   cheerAnimation: Jump_01
 --- !u!64 &1353977374
 MeshCollider:
@@ -5151,6 +5166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  reservedForBirthdayKid: 0
   cheerAnimation: Clap
 --- !u!64 &1560008881
 MeshCollider:
@@ -6092,6 +6108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  reservedForBirthdayKid: 0
   cheerAnimation: Clap
 --- !u!1 &1841761487
 GameObject:
@@ -6220,6 +6237,11 @@ MonoBehaviour:
   _content: {fileID: 1711901245}
   _enabledVisuals: {fileID: 0}
   _disabledVisuals: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _clips:
+  - {fileID: 8300000, guid: d90cc8f84a94b23438316564c2958b58, type: 3}
+  - {fileID: 8300000, guid: 4d36e3799d7b0d9438314450c5132961, type: 3}
+  - {fileID: 8300000, guid: 44feb12bd33cb9941b126311a8cc30df, type: 3}
 --- !u!1001 &1875974068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6656,6 +6678,11 @@ MonoBehaviour:
   _content: {fileID: 1515239411}
   _enabledVisuals: {fileID: 0}
   _disabledVisuals: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _clips:
+  - {fileID: 8300000, guid: d90cc8f84a94b23438316564c2958b58, type: 3}
+  - {fileID: 8300000, guid: 4d36e3799d7b0d9438314450c5132961, type: 3}
+  - {fileID: 8300000, guid: 44feb12bd33cb9941b126311a8cc30df, type: 3}
 --- !u!1 &2049092110
 GameObject:
   m_ObjectHideFlags: 0
@@ -6769,6 +6796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  reservedForBirthdayKid: 0
   cheerAnimation: Jump_01
 --- !u!1001 &2058881529
 PrefabInstance:
@@ -6978,6 +7006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  reservedForBirthdayKid: 0
   cheerAnimation: Clap
 --- !u!1001 &2128613870
 PrefabInstance:

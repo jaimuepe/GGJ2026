@@ -206,5 +206,15 @@ namespace Masks
                 f.SetActive(f.name.ToLowerInvariant() == face?.ToLowerInvariant());
             }
         }
+
+        public void RemoveMask()
+        {
+            foreach (var (loc, piece) in _currentPieces)
+            {
+                Destroy(piece.Instance);
+            }            
+            
+            _currentPieces.Clear();
+        }
     }
 }

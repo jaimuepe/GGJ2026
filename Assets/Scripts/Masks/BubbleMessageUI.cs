@@ -26,17 +26,26 @@ namespace Masks
             _messageLabel.text = msg;
         }
 
+        private void OnDestroy()
+        {
+            DOTween.Kill(this);
+        }
+
         public void Show(float duration = 1.0f)
         {
             var seq = DOTween.Sequence();
+            seq.SetTarget(this);
             seq.Append(transform.DOScale(1.0f, 0.3f).SetEase(Ease.OutBack));
-            seq.AppendInterval(2.0f);
+            seq.AppendInterval(3.0f);
             seq.AppendCallback(Hide);
         }
 
         private void Hide()
         {
-            transform.DOScale(0.0f, 0.5f).SetEase(Ease.InBack).OnComplete(() => { Destroy(gameObject); });
+            var seq = DOTween.Sequence();
+            seq.SetTarget(this);
+            seq.Append(transform.DOScale(0.0f, 0.5f).SetEase(Ease.InBack));
+            seq.OnComplete(() => Destroy(gameObject));
         }
 
         private void LateUpdate()

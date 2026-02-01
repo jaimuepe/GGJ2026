@@ -4,6 +4,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
 namespace Masks
 {
@@ -16,6 +17,10 @@ namespace Masks
 
         [SerializeField] private GameObject _enabledVisuals;
         [SerializeField] private GameObject _disabledVisuals;
+
+        [SerializeField] private AudioSource _audioSource;
+
+        [SerializeField] private AudioClip[] _clips;
 
         private bool _interactable = true;
 
@@ -62,6 +67,17 @@ namespace Masks
             {
                 DOTween.Kill(_content.transform);
                 _content.transform.DOScale(0.9f, 0.1f);
+            }
+
+            if (_clips != null)
+            {
+                var clip = _clips[Random.Range(0, _clips.Length)];
+                if (_audioSource == null)
+                {
+                    _audioSource = gameObject.AddComponent<AudioSource>();
+                }
+
+                _audioSource.PlayOneShot(clip);
             }
 
             _isClickInProgress = true;

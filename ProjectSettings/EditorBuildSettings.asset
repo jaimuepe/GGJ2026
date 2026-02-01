@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: 5b305d55d8f5a814d9d34c1cdbef4e9b
+  - enabled: 1
     path: Assets/Scenes/MaskEditor.unity
     guid: cd4cbdb19079ee14fb85dca1033093cf
   - enabled: 1

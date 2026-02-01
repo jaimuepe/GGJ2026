@@ -530,8 +530,8 @@ MonoBehaviour:
   m_Texture: {fileID: 2800000, guid: da328c517fd0ad0409c7813f685a80e5, type: 3}
   m_UVRect:
     serializedVersion: 2
-    x: 1.8821338
-    y: 1.8821338
+    x: 0.40395015
+    y: 0.40395015
     width: 8
     height: 4.5
 --- !u!222 &384802042
@@ -1519,6 +1519,11 @@ MonoBehaviour:
   _content: {fileID: 428162926}
   _enabledVisuals: {fileID: 0}
   _disabledVisuals: {fileID: 0}
+  _audioSource: {fileID: 0}
+  _clips:
+  - {fileID: 8300000, guid: d90cc8f84a94b23438316564c2958b58, type: 3}
+  - {fileID: 8300000, guid: 4d36e3799d7b0d9438314450c5132961, type: 3}
+  - {fileID: 8300000, guid: 44feb12bd33cb9941b126311a8cc30df, type: 3}
 --- !u!1 &1749949103
 GameObject:
   m_ObjectHideFlags: 0
