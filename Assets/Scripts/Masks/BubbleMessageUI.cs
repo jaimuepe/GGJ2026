@@ -26,11 +26,11 @@ namespace Masks
             _messageLabel.text = msg;
         }
 
-        public void Show()
+        public void Show(float duration = 1.0f)
         {
             var seq = DOTween.Sequence();
             seq.Append(transform.DOScale(1.0f, 0.3f).SetEase(Ease.OutBack));
-            seq.AppendInterval(1.0f);
+            seq.AppendInterval(2.0f);
             seq.AppendCallback(Hide);
         }
 

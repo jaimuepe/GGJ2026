@@ -26,6 +26,8 @@ namespace Masks
         [SerializeField] private ColorPaletteSO _colorPaletteSO;
 
         [SerializeField] private Transform _allPropsContainer;
+
+        [SerializeField] private GameObject[] _faces;
         
         private readonly Dictionary<eMaskPieceLocation, PieceInfo> _currentPieces = new();
 
@@ -195,6 +197,14 @@ namespace Masks
         {
             PlayerName = playerName;
             Message = playerMessage;
+        }
+
+        public void ChangeFace(string face)
+        {
+            foreach (var f in _faces)
+            {
+                f.SetActive(f.name.ToLowerInvariant() == face?.ToLowerInvariant());
+            }
         }
     }
 }
