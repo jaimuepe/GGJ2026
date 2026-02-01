@@ -24,17 +24,21 @@ namespace Masks
         [SerializeField] private GameObject _playerVisualsObject;
 
         [SerializeField] private RenderTexture _polaroidRt;
-        
+
+        [SerializeField] private BubbleMessageUI _bubbleMessagePrefab;
+
+        [SerializeField] private Canvas _overlayCanvas;
+
         private readonly List<PartyGuest> _guests = new();
 
         private List<PartyGuestSlot> _partyGuestSlots;
 
         private CinemachineBrain _brain;
-        
+
         private void Start()
         {
             _brain = FindFirstObjectByType<CinemachineBrain>();
-            
+
             var persistenceStore = PersistentStoreObject.Instance;
 
             var storedData = persistenceStore.PlayerData;
@@ -55,11 +59,9 @@ namespace Masks
             for (var i = 0; i < data.Count && i < _partyGuestSlots.Count; i++)
             {
                 var guest = Instantiate(_partyGuestPrefab);
+                guest.SetData(data[i]);
                 guest.name = data[i].player_name;
 
-                var guestCharacter = guest.GetComponentInChildren<Character>();
-
-                guestCharacter.Load(data[i]);
                 _guests.Add(guest);
 
                 _partyGuestSlots[i].Bind(guest);
@@ -95,7 +97,7 @@ namespace Masks
             yield return new WaitForSeconds(1.0f);
 
             Utils.SetLayerRecursive(_playerVisualsObject, LayerMask.NameToLayer("Default"));
-            
+
             _birthdayBoy.PlayState("IdleForced", Random.value);
             _playableCharacter.PlayState("IdleForced", Random.value);
 
@@ -152,29 +154,31 @@ namespace Masks
             };
 
             yield return new WaitForSeconds(1.0f);
-            
+
             _cinematicEndCamera.Priority = new PrioritySettings
             {
                 Value = 1001,
             };
-            
+
             yield return SceneTransitionUI.Instance.HideCor();
 
             if (_brain.IsBlending)
             {
                 yield return new WaitWhile(() => _brain.IsBlending);
             }
-            
+
             yield return new WaitForSeconds(1.0f);
 
             var offset = playerSlot.cheerAnimation == "Clap" ? Random.value : 0.0f;
-            _playableCharacter.PlayState(playerSlot.cheerAnimation,  offset);
+            _playableCharacter.PlayState(playerSlot.cheerAnimation, offset);
 
             for (var i = 0; i < _guests.Count; i++)
             {
                 offset = restOfSlots[i].cheerAnimation == "Clap" ? Random.value : 0.0f;
-                _guests[i].PlayState(restOfSlots[i].cheerAnimation,  offset);
+                _guests[i].PlayState(restOfSlots[i].cheerAnimation, offset);
             }
+
+            StartCoroutine(ShowRandomMessagesCor(_guests));
 
             yield return new WaitForSeconds(5.0f);
 
@@ -185,17 +189,39 @@ namespace Masks
             mainCamera.targetTexture = _polaroidRt;
             mainCamera.Render();
             mainCamera.targetTexture = oldTexture;
-            
+
             yield return FlashCanvasUI.Instance.ShowCor();
-            
+
             yield return SceneManager.LoadSceneAsync("Polaroid");
-            
+
             yield return FlashCanvasUI.Instance.HideCor();
 
             var polaroidUI = FindFirstObjectByType<PolaroidUI>();
             polaroidUI.PlayAnimations();
-            
+
             Destroy(gameObject);
+        }
+
+        private IEnumerator ShowRandomMessagesCor(List<PartyGuest> guests)
+        {
+            while (true)
+            {
+                guests = guests
+                    .OrderBy(_ => Random.value)
+                    .ToList();
+
+                foreach (var guest in guests)
+                {
+                    var bubble = Instantiate(_bubbleMessagePrefab, _overlayCanvas.transform, false);
+                    bubble.SetData(guest.bubbleAnchor, guest.Character.Message ?? "Congrats!");
+
+                    bubble.gameObject.SetActive(true);
+
+                    bubble.Show();
+
+                    yield return new WaitForSeconds(Random.Range(0.3f, 0.5f));
+                }
+            }
         }
     }
 }

@@ -190,5 +190,11 @@ namespace Masks
             _animator ??= GetComponentInChildren<Animator>();
             _animator.Play(state, 0, normalizedTime);
         }
+
+        public void SetNameAndMessage(string playerName, string playerMessage)
+        {
+            PlayerName = playerName;
+            Message = playerMessage;
+        }
     }
 }

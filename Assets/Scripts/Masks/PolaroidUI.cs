@@ -14,7 +14,7 @@ namespace Masks
 
         [SerializeField] private TextMeshProUGUI _totalFriendsLabel;
         [SerializeField] private TextMeshProUGUI _message;
-        
+
         public void PlayAnimations()
         {
             _polaroidView.DOFade(1.0f, 5.0f);
@@ -56,10 +56,10 @@ namespace Masks
 
         private void RefreshPlayersCount()
         {
-            var players = Server.Instance.TotalPlayers;
-            
+            var players = Server.Instance.TotalPlayers + 1;
+
             _totalFriendsLabel.text =
-                $"You and {players} more friends attended the party.\\n Thank you for coming!\\n-Manolito";
+                $@"You and {players} more friends attended the party.\n Thank you for coming!\n-Manolito";
         }
     }
 }

@@ -10,10 +10,12 @@ namespace Masks
         [SerializeField] private Character _character;
 
         [SerializeField] private CinemachineCamera _camera;
-
+        
         private CinemachineBrain _brain;
 
         public Character Character => _character;
+
+        [SerializeField] public Transform bubbleAnchor;
 
         private void Awake()
         {

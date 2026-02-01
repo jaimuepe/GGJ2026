@@ -90,6 +90,11 @@ namespace Masks.Catalog
 
             yield return _loading.Show().WaitForCompletion();
 
+            var playerName = _nameField.text;
+            var playerMessage = _messageField.text;
+
+            _character.SetNameAndMessage(playerName, playerMessage);
+            
             string? errorMsg = null;
             var completed = false;
 
