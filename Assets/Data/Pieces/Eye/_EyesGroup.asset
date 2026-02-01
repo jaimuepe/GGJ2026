@@ -21,4 +21,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: db79270fa4d25cc47a5419e49c8666a2, type: 2}
   - {fileID: 11400000, guid: d93b21b095b0a5a4ca0632e6bd258832, type: 2}
   - {fileID: 11400000, guid: c21a0dafd44b42746a0206279ae3fe4e, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1d7a98831c14fd24ea42c450d33a6571, type: 3}
+  title: Eyes

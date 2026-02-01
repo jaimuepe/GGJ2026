@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Mouth_05
   m_EditorClassIdentifier: Assembly-CSharp::Masks.MaskPieceSO
   prefab: {fileID: 919132149155446097, guid: 98b7e405b5ae1e04d918daf79bed3ef0, type: 3}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: dfd87dc8aa7155546bd12bf4fe7db49c, type: 3}

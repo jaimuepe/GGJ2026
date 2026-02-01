@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Eyebrows_03
   m_EditorClassIdentifier: Assembly-CSharp::Masks.MaskPieceSO
   prefab: {fileID: 919132149155446097, guid: 567b9ac017667e5488379dc853283a38, type: 3}
+  sprite: {fileID: 21300000, guid: 1bcf11ab73e3516499cbe54cc7cd7776, type: 3}

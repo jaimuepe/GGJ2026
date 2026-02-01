@@ -21,4 +21,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 854163ea9b1cc4944a404f0b09b97299, type: 2}
   - {fileID: 11400000, guid: 6bffed0553c3c3548b98f20ad2919dfe, type: 2}
   - {fileID: 11400000, guid: b6700867c8b2cbb498199948bccb167e, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 4548f922293d9fb4fae0765accb3f548, type: 3}
+  title: Base

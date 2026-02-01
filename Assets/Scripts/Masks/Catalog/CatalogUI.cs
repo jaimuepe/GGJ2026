@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 namespace Masks.Catalog
@@ -33,6 +34,8 @@ namespace Masks.Catalog
         [SerializeField] private GameButton _randomizeButton;
 
         [SerializeField] private DetailsUI _detailsUI;
+
+        [SerializeField] private TextMeshProUGUI _groupLabel;
 
         private readonly List<CatalogTabUI> _tabs = new();
         private readonly List<PieceUI> _pieces = new();
@@ -91,7 +94,8 @@ namespace Masks.Catalog
             }
 
             SelectTab(_tabs[0]);
-            SelectColor(_colors[0].Color);
+            
+            Randomize(false);
 
             var seq = DOTween.Sequence();
             seq.AppendInterval(0.1f);
@@ -110,6 +114,10 @@ namespace Masks.Catalog
         {
             _activeTab = tabToSelect;
 
+            var group = _catalogSO.groups.First(g => g.location == tabToSelect.Location);
+
+            _groupLabel.text = group.title;
+            
             foreach (var tab in _tabs)
             {
                 tab.SetSelected(tab == tabToSelect);
@@ -152,17 +160,17 @@ namespace Masks.Catalog
                 return;
             }
 
-            SelectPiece(piece.PieceSO);
+            SelectPiece(piece.PieceSO, animate: true);
         }
 
-        private void SelectPiece(MaskPieceSO pieceSO)
+        private void SelectPiece(MaskPieceSO pieceSO, bool animate = false)
         {
             foreach (var piece in _pieces)
             {
                 piece.SetSelected(piece.PieceSO == pieceSO);
             }
 
-            _character.Load(_activeTab.Location, pieceSO);
+            _character.Load(_activeTab.Location, pieceSO, animate);
 
             var appliedColor = _character.GetColorAtLocation(_activeTab.Location);
             if (appliedColor == null)
@@ -207,7 +215,12 @@ namespace Masks.Catalog
 
         private void Randomize()
         {
-            _character.RandomizeAllPieces();
+            Randomize(true);
+        }
+        
+        private void Randomize(bool animate)
+        {
+            _character.RandomizeAllPieces(animate);
 
             SelectPiece(_character.GetPieceAtLocation(_activeTab.Location));
             SelectColor(_character.GetColorAtLocation(_activeTab.Location));

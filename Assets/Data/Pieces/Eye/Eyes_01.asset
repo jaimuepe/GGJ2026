@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Eyes_01
   m_EditorClassIdentifier: Assembly-CSharp::Masks.MaskPieceSO
   prefab: {fileID: 919132149155446097, guid: 7752a3bae7a08e2459fc041665fe910b, type: 3}
+  sprite: {fileID: 21300000, guid: 4c7ed888f5bbab942ad83f6f8d665a7a, type: 3}

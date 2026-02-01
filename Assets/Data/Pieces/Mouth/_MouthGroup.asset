@@ -21,4 +21,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bc501a1ce2ffe0d4ca75f212140caa0f, type: 2}
   - {fileID: 11400000, guid: 504b8d55722488449828b1ad27fbabb2, type: 2}
   - {fileID: 11400000, guid: 0658ee5d9c25bc74d90df28771516c99, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 233e649671030b947b862793634be1ba, type: 3}
+  title: Mouth

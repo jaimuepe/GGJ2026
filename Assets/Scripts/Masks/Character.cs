@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -24,6 +25,8 @@ namespace Masks
         [SerializeField] private MaskPiecesCatalogSO _catalogSO;
         [SerializeField] private ColorPaletteSO _colorPaletteSO;
 
+        [SerializeField] private Transform _allPropsContainer;
+        
         private readonly Dictionary<eMaskPieceLocation, PieceInfo> _currentPieces = new();
 
         private Dictionary<eMaskPieceLocation, MaskPieceAnchorPoint> _anchorsByLocation = new();
@@ -40,7 +43,7 @@ namespace Masks
             _anchorsByLocation = anchors.ToDictionary(a => a.Location, a => a);
         }
 
-        public void Load(eMaskPieceLocation location, MaskPieceSO pieceSO)
+        public void Load(eMaskPieceLocation location, MaskPieceSO pieceSO, bool animate = false)
         {
             if (_currentPieces.TryGetValue(location, out var currentPiece))
             {
@@ -58,6 +61,19 @@ namespace Masks
             
             _currentPieces[location].Instance = visual;
             _currentPieces[location].PieceSO = pieceSO;
+
+            if (animate)
+            {
+                if (location == eMaskPieceLocation.Base)
+                {
+                    DOTween.Kill(_allPropsContainer);
+                    _allPropsContainer.DOPunchScale(Vector3.one * 0.1f, 0.15f);
+                }
+                else
+                {
+                    visual.transform.DOPunchScale(Vector3.one * 0.1f, 0.15f);
+                }
+            }
         }
 
         public void Load(PlayerData playerData)
@@ -94,12 +110,18 @@ namespace Masks
             }
         }
 
-        public void RandomizeAllPieces()
+        public void RandomizeAllPieces(bool animate)
         {
             foreach (eMaskPieceLocation location in Enum.GetValues(typeof(eMaskPieceLocation)))
             {
                 if (location == eMaskPieceLocation.Unknown) continue;
                 RandomizePiece(location, null);
+            }
+
+            if (animate)
+            {
+                DOTween.Kill(_allPropsContainer);
+                _allPropsContainer.DOPunchScale(Vector3.one * 0.1f, 0.15f);
             }
         }
 

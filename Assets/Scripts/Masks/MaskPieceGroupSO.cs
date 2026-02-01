@@ -15,5 +15,7 @@ namespace Masks
         [SerializeField] public List<MaskPieceSO> pieces = new();
 
         [SerializeField] public Sprite icon;
+
+        [SerializeField] public string title;
     }
 }

@@ -21,4 +21,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c5744b55b28c5cc4d8fd6366ba7efad2, type: 2}
   - {fileID: 11400000, guid: 38abd8df99ce48841aec04c230cc9be6, type: 2}
   - {fileID: 11400000, guid: b74f6cd28c31a2d469dfb9c26eb3fa9e, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: b7cb5ea76ed16ce42aadf7a65af4176c, type: 3}
+  title: Eyebrows

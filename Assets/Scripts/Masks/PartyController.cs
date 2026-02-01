@@ -38,7 +38,7 @@ namespace Masks
             if (storedData == null)
             {
                 Debug.LogError("Could not find any stored data, randomizing");
-                _playableCharacter.RandomizeAllPieces();
+                _playableCharacter.RandomizeAllPieces(false);
             }
             else
             {
@@ -68,13 +68,13 @@ namespace Masks
                 var guest = Instantiate(_partyGuestPrefab);
                 var guestCharacter = guest.GetComponentInChildren<Character>();
 
-                guestCharacter.RandomizeAllPieces();
+                guestCharacter.RandomizeAllPieces(false);
                 _guests.Add(guest);
 
                 _partyGuestSlots[i].Bind(guest);
             }
 
-            _birthdayBoy.Character.RandomizeAllPieces();
+            _birthdayBoy.Character.RandomizeAllPieces(false);
         }
 
         private Coroutine? _blowCandlesCor;

@@ -21,4 +21,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d799c315a4744c44794be4d1a602b58d, type: 2}
   - {fileID: 11400000, guid: 96e15f11e447fd947a7ff59cb3f2fe29, type: 2}
   - {fileID: 11400000, guid: 6c5e38632cdb7d645a86a8a98cd12621, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6ed538cd1267ba744851b54da63eb5aa, type: 3}
+  title: Nose

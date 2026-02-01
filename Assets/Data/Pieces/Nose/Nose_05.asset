@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Nose_05
   m_EditorClassIdentifier: Assembly-CSharp::Masks.MaskPieceSO
   prefab: {fileID: 919132149155446097, guid: 33f23f50385355e4b9fb90052cff2286, type: 3}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: d94fce4964937fa45ba048ec5216e46a, type: 3}
