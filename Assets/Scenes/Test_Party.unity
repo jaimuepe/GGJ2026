@@ -7187,6 +7187,10 @@ PrefabInstance:
       propertyPath: CinemachineCameraTarget
       value: 
       objectReference: {fileID: 586073188}
+    - target: {fileID: 5536385984182424350, guid: b5266785a2c698740ac4ed98750d8bfe, type: 3}
+      propertyPath: DefaultBlend.Time
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5551403113090723590, guid: b5266785a2c698740ac4ed98750d8bfe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

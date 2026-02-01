@@ -182,6 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 777510040702653446}
   - component: {fileID: 1375965567925292062}
+  - component: {fileID: 2770404731267137740}
   m_Layer: 0
   m_Name: PartyGuest
   m_TagString: Untagged
@@ -223,6 +224,29 @@ MonoBehaviour:
   _character: {fileID: 2391035810835831138}
   _camera: {fileID: 5186983388405811084}
   bubbleAnchor: {fileID: 8353888038585452243}
+--- !u!136 &2770404731267137740
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5682577254931238141}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.9
+  m_Height: 3.4635653
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.2317827, z: 0}
 --- !u!1001 &987544404583399548
 PrefabInstance:
   m_ObjectHideFlags: 0
