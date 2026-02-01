@@ -11,13 +11,50 @@ namespace Masks
 {
     public class Server : MonoBehaviour
     {
+        private static Server _instance;
+
+        public static Server Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    var go = new GameObject("Server");
+                    _instance = go.AddComponent<Server>();
+                }
+
+                return _instance!;
+            }
+        }
+
         [SerializeField] public bool _dbgTargetLocal = false;
 
-        private const string local_url = "http://localhost:3000/users";
         private const string prod_url = "https://ggj2026-server-sbre.onrender.com/users";
 
         private Coroutine? _sendCor;
         private Coroutine? _retrieveCor;
+
+        public int TotalPlayers { get; private set; }
+
+        public event Action<int> OnTotalPlayersUpdated;
+
+        private void Awake()
+        {
+            if (_instance == null)
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else if (_instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        private void Start()
+        {
+            StartCoroutine(FetchNumberOfPlayersCor());
+        }
 
         public void Send(Character character, Action successCallback, Action<string> failureCallback)
         {
@@ -89,7 +126,7 @@ namespace Masks
 
                     var playersData =
                         JsonConvert.DeserializeObject<List<PlayerData>>(www.downloadHandler.text, settings);
-                    
+
                     successCallback.Invoke(playersData);
                 }
             }
@@ -97,16 +134,37 @@ namespace Masks
             _retrieveCor = null;
         }
 
-        private string GetUrl()
-        {
-            string url;
-#if UNITY_EDITOR
-            url = _dbgTargetLocal ? local_url : prod_url;
-#else
-            url = prod_url;
-#endif
+        private string GetUrl() => prod_url;
 
-            return url;
+        private IEnumerator FetchNumberOfPlayersCor()
+        {
+            const string url = prod_url + "/count";
+
+            while (true)
+            {
+                using (var www = UnityWebRequest.Get(url))
+                {
+                    yield return www.SendWebRequest();
+
+                    if (www.result != UnityWebRequest.Result.Success)
+                    {
+                        // silently fail
+                    }
+                    else
+                    {
+                        var settings = new JsonSerializerSettings();
+                        settings.Converters.Add(new ColorJsonConverter());
+
+                        if (int.TryParse(www.downloadHandler.text, out var number))
+                        {
+                            TotalPlayers = number;
+                            OnTotalPlayersUpdated?.Invoke(TotalPlayers);
+                        }
+                    }
+                }
+
+                yield return new WaitForSeconds(5.0f);
+            }
         }
     }
 }

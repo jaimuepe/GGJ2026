@@ -158,7 +158,7 @@ namespace Masks
 
             foreach (var r in piece.Instance.GetComponentsInChildren<Renderer>())
             {
-                r.material.SetColor("_BaseColor", color.color);
+                r.material.SetColor("_BaseColor", color?.color ?? Color.white);
             }
         }
 

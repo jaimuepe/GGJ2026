@@ -61,12 +61,9 @@ namespace Masks.Interactions
             _canCaptureInput = false;
             
             _partyGuest.ZoomIn();
-
-            yield return null;
-            if (_partyGuest.CameraIsBlending())
-            {
-                yield return new WaitUntil(() => !_partyGuest.CameraIsBlending());
-            }
+            
+            yield return new WaitUntil(() => _partyGuest.CameraIsBlending());
+            yield return new WaitWhile(() => _partyGuest.CameraIsBlending());
             
             _canvas.SetData(_partyGuest.Character);
             _canvas.Show();
@@ -80,12 +77,9 @@ namespace Masks.Interactions
             _canvas.Hide();
             
             _partyGuest.ZoomOut();
-
-            yield return null;
-            if (_partyGuest.CameraIsBlending())
-            {
-                yield return new WaitUntil(() => !_partyGuest.CameraIsBlending());
-            }
+            
+            yield return new WaitUntil(() => _partyGuest.CameraIsBlending());
+            yield return new WaitWhile(() => _partyGuest.CameraIsBlending());
 
             IsInteractionCompleted = true;
             

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Masks.Catalog
 {
@@ -18,7 +17,7 @@ namespace Masks.Catalog
 
         [SerializeField] private GameObject _blocker;
 
-        [SerializeField] private GameObject _loadingObj;
+        [SerializeField] private LoadingUI _loading;
 
         [SerializeField] private Character _character;
 
@@ -45,8 +44,6 @@ namespace Masks.Catalog
         {
             _content.anchoredPosition = new Vector2(0.0f, -1200.0f);
             _titleContent.anchoredPosition = new Vector2(0.0f, -1200.0f);
-            
-            _loadingObj.SetActive(false);
         }
 
         private void Start()
@@ -80,13 +77,24 @@ namespace Masks.Catalog
 
         private IEnumerator ConfirmCor()
         {
-            _loadingObj.SetActive(true);
+            _blocker.SetActive(true);
+            
+            var seq = DOTween.Sequence();
+            seq.Append(_titleContent.DOAnchorPosY(-1200.0f, 0.5f).SetEase(Ease.InBack));
+            seq.Insert(0.3f, _content.DOAnchorPosY(-1200.0f, 0.5f).SetEase(Ease.InBack));
+            seq.AppendCallback(() => { _blocker.SetActive(false); });
 
-            var server = FindFirstObjectByType<Server>();
+            yield return seq.WaitForCompletion();
+            
+            _blocker.SetActive(false);
+
+            yield return _loading.Show().WaitForCompletion();
 
             string? errorMsg = null;
             var completed = false;
 
+            var server = Server.Instance;
+            
             server.Send(
                 _character,
                 () => completed = true,
@@ -134,11 +142,11 @@ namespace Masks.Catalog
             }
 
             PersistentStoreObject.Instance.StorePartyGuests(partyGuests);
+            
+            yield return new WaitForSeconds(1.0f);
 
-            _loadingObj.SetActive(false);
-
-            yield return SceneManager.LoadSceneAsync("Test_Party");
-
+            SceneTransitionUI.Instance.LoadSceneWithTransition("Test_Party");
+            
             _confirmCor = null;
         }
 

@@ -48,11 +48,8 @@ namespace Masks.Interactions
         {
             _partyGuest.ZoomIn();
 
-            yield return null;
-            if (_partyGuest.CameraIsBlending())
-            {
-                yield return new WaitUntil(() => !_partyGuest.CameraIsBlending());
-            }
+            yield return new WaitUntil(() => _partyGuest.CameraIsBlending());
+            yield return new WaitWhile(() => _partyGuest.CameraIsBlending());
 
             var canvas = FindFirstObjectByType<BirthdayKidCanvas>();
             canvas.Show();
@@ -64,12 +61,9 @@ namespace Masks.Interactions
             if (canvas.IsBlowingTheCandles) yield break;
 
             _partyGuest.ZoomOut();
-
-            yield return null;
-            if (_partyGuest.CameraIsBlending())
-            {
-                yield return new WaitUntil(() => !_partyGuest.CameraIsBlending());
-            }
+            
+            yield return new WaitUntil(() => _partyGuest.CameraIsBlending());
+            yield return new WaitWhile(() => _partyGuest.CameraIsBlending());
 
             IsInteractionCompleted = true;
 

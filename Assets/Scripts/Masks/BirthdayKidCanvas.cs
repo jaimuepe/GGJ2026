@@ -7,18 +7,24 @@ namespace Masks
 {
     public class BirthdayKidCanvas : MonoBehaviour
     {
-        [SerializeField] private CanvasGroup _canvasGroup;
-
         [SerializeField] private GameButton _blowCandlesButton;
         [SerializeField] private GameButton _goBackButton;
+
+        [SerializeField] private RectTransform _content;
+        [SerializeField] private RectTransform _titleContent;
 
         private bool _isVisible;
 
         public bool IsBlowingTheCandles { get; private set; }
-        
+
+        private void Awake()
+        {
+            _content.anchoredPosition = new Vector2(0.0f, -1200.0f);
+            _titleContent.anchoredPosition = new Vector2(0.0f, -1200.0f);
+        }
+
         private void Start()
         {
-            _canvasGroup.alpha = 0.0f;
             _goBackButton.Interactable = false;
             _blowCandlesButton.Interactable = false;
         }
@@ -38,7 +44,8 @@ namespace Masks
         public void Show()
         {
             var seq = DOTween.Sequence();
-            seq.Append(_canvasGroup.DOFade(1.0f, 0.3f));
+            seq.Append(_content.DOAnchorPosY(0.0f, 0.5f).SetEase(Ease.OutBack));
+            seq.Insert(0.3f, _titleContent.DOAnchorPosY(0.0f, 0.5f).SetEase(Ease.OutBack));
             seq.AppendCallback(() =>
             {
                 _goBackButton.Interactable = true;
@@ -51,13 +58,11 @@ namespace Masks
         {
             _goBackButton.Interactable = false;
             _blowCandlesButton.Interactable = false;
-            
+
             var seq = DOTween.Sequence();
-            seq.Append(_canvasGroup.DOFade(0.0f, 0.3f));
-            seq.AppendCallback(() =>
-            {
-                _isVisible = false;
-            });
+            seq.Append(_titleContent.DOAnchorPosY(-1200.0f, 0.5f).SetEase(Ease.InBack));
+            seq.Insert(0.3f, _content.DOAnchorPosY(-1200.0f, 0.5f).SetEase(Ease.InBack));
+            seq.AppendCallback(() => { _isVisible = false; });
         }
 
         private void BlowCandles()
@@ -65,7 +70,7 @@ namespace Masks
             IsBlowingTheCandles = true;
 
             Hide();
-            
+
             var partyController = FindFirstObjectByType<PartyController>();
             partyController.BlowCandles();
         }

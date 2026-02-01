@@ -3,12 +3,11 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Masks.Catalog
 {
-    public class PieceUI : MonoBehaviour, IPointerClickHandler
+    public class PieceUI : MonoBehaviour
     {
         [SerializeField] private GameObject _selectedObj;
         [SerializeField] private TextMeshProUGUI _placeholderText;
@@ -17,11 +16,23 @@ namespace Masks.Catalog
 
         [SerializeField] private Color _selectedColor;
         [SerializeField] private Color _deelectedColor;
+
+        [SerializeField] private GameButton _button;
         
         private MaskPieceSO _pieceSO;
-        private Action<PieceUI> _callback;
+        private Action<PieceUI>? _callback;
 
         public MaskPieceSO PieceSO => _pieceSO;
+
+        private void OnEnable()
+        {
+            _button.onClick += OnClick;
+        }
+
+        private void OnDisable()
+        {
+            _button.onClick -= OnClick;
+        }
 
         public void SetData(MaskPieceSO pieceSO, Action<PieceUI> callback)
         {
@@ -33,11 +44,6 @@ namespace Masks.Catalog
             UpdateColor(false);
         }
 
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            _callback.Invoke(this);
-        }
-
         public void SetSelected(bool b)
         {
             _selectedObj.SetActive(b);
@@ -47,6 +53,11 @@ namespace Masks.Catalog
         private void UpdateColor(bool selected)
         {
             _icon.color = selected ? _selectedColor : _deelectedColor;
+        }
+
+        private void OnClick()
+        {
+            _callback?.Invoke(this);
         }
     }
 }

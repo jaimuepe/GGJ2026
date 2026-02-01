@@ -3,9 +3,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
+using Masks.Catalog;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Masks
 {
@@ -21,6 +22,8 @@ namespace Masks
         [SerializeField] private CinemachineCamera _cinematicEndCamera;
 
         [SerializeField] private GameObject _playerVisualsObject;
+
+        [SerializeField] private RenderTexture _polaroidRt;
         
         private readonly List<PartyGuest> _guests = new();
 
@@ -87,10 +90,7 @@ namespace Masks
 
         private IEnumerator BlowCandlesCor()
         {
-            var blackoutCanvas = FindFirstObjectByType<BlackoutCanvas>();
-
-            var seq = blackoutCanvas.Show();
-            yield return seq.WaitForCompletion();
+            yield return SceneTransitionUI.Instance.ShowCor();
 
             yield return new WaitForSeconds(1.0f);
 
@@ -109,6 +109,7 @@ namespace Masks
 
             var restOfSlots = slots
                 .Where(s => !s.reservedForPlayer)
+                .OrderBy(s => Random.value)
                 .ToList();
 
             if (playerSlot != null)
@@ -157,8 +158,7 @@ namespace Masks
                 Value = 1001,
             };
             
-            seq = blackoutCanvas.Hide();
-            yield return seq.WaitForCompletion();
+            yield return SceneTransitionUI.Instance.HideCor();
 
             if (_brain.IsBlending)
             {
@@ -171,9 +171,29 @@ namespace Masks
 
             for (var i = 0; i < _guests.Count; i++)
             {
-
                 _guests[i].PlayState("Clap",  Random.value);
             }
+
+            yield return new WaitForSeconds(5.0f);
+
+            DontDestroyOnLoad(gameObject);
+
+            var mainCamera = Camera.main;
+            var oldTexture = mainCamera.targetTexture;
+            mainCamera.targetTexture = _polaroidRt;
+            mainCamera.Render();
+            mainCamera.targetTexture = oldTexture;
+            
+            yield return FlashCanvasUI.Instance.ShowCor();
+            
+            yield return SceneManager.LoadSceneAsync("Polaroid");
+            
+            yield return FlashCanvasUI.Instance.HideCor();
+
+            var polaroidUI = FindFirstObjectByType<PolaroidUI>();
+            polaroidUI.PlayAnimations();
+            
+            Destroy(gameObject);
         }
     }
 }

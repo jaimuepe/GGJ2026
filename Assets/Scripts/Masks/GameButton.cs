@@ -7,16 +7,20 @@ using UnityEngine.EventSystems;
 
 namespace Masks
 {
-    public class GameButton : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
+    public class GameButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler,
+        IPointerExitHandler
     {
         public event Action onClick;
 
         [SerializeField] private Transform _content;
-        
+
         [SerializeField] private GameObject _enabledVisuals;
         [SerializeField] private GameObject _disabledVisuals;
 
         private bool _interactable = true;
+
+        private bool _isClickInProgress;
+        private bool _isClickValid;
 
         public bool Interactable
         {
@@ -35,12 +39,6 @@ namespace Masks
             {
                 Debug.LogError($"GameButton = {name} does not have _content");
             }
-        }
-
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            if (!Interactable) return;
-            onClick?.Invoke();
         }
 
         private void UpdateVisuals()
@@ -62,8 +60,12 @@ namespace Masks
 
             if (_content != null)
             {
-                _content.transform.DOScale(1.1f, 0.15f);
+                DOTween.Kill(_content.transform);
+                _content.transform.DOScale(0.9f, 0.1f);
             }
+
+            _isClickInProgress = true;
+            _isClickValid = true;
         }
 
         public void OnPointerUp(PointerEventData eventData)
@@ -72,10 +74,26 @@ namespace Masks
 
             if (_content != null)
             {
-                _content.transform.DOScale(1.0f, 0.15f);
+                DOTween.Kill(_content.transform);
+                _content.transform.DOScale(1.0f, 0.1f).SetEase(Ease.OutBounce);
             }
-            
-            onClick?.Invoke();
+
+            _isClickInProgress = false;
+
+            if (_isClickValid)
+            {
+                onClick?.Invoke();
+            }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            _isClickValid = true;
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            _isClickValid = false;
         }
     }
 }

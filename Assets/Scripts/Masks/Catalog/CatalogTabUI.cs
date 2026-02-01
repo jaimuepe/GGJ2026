@@ -3,24 +3,32 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Masks.Catalog
 {
-    public class CatalogTabUI : MonoBehaviour, IPointerClickHandler
+    public class CatalogTabUI : MonoBehaviour
     {
         [SerializeField] private GameObject _selectedObj;
-        [SerializeField] private TextMeshProUGUI _placeholderText;
+
+        [SerializeField] private GameButton _button;
+
+        [SerializeField] private Image[] _images;
 
         private MaskPieceGroupSO _groupDataSO;
 
-        private Action<CatalogTabUI> _onTabClicked;
+        private Action<CatalogTabUI>? _onTabClicked;
 
         public eMaskPieceLocation Location => _groupDataSO.location;
 
-        public void OnPointerClick(PointerEventData eventData)
+        private void OnEnable()
         {
-            _onTabClicked.Invoke(this);
+            _button.onClick += OnClick;
+        }
+
+        private void OnDisable()
+        {
+            _button.onClick -= OnClick;
         }
 
         public void SetData(MaskPieceGroupSO groupDataSO, Action<CatalogTabUI> onTabClicked)
@@ -28,15 +36,20 @@ namespace Masks.Catalog
             _groupDataSO = groupDataSO;
             _onTabClicked = onTabClicked;
 
-            if (_placeholderText != null)
+            foreach (var img in _images)
             {
-                _placeholderText.text = _groupDataSO.location.ToString();
+                img.sprite = groupDataSO.icon;
             }
         }
 
         public void SetSelected(bool b)
         {
             _selectedObj.SetActive(b);
+        }
+
+        private void OnClick()
+        {
+            _onTabClicked?.Invoke(this);
         }
     }
 }

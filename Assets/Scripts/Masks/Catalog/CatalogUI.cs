@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -79,9 +80,6 @@ namespace Masks.Catalog
                 tab.gameObject.SetActive(true);
 
                 _tabs.Add(tab);
-
-                _character.Load(tab.Location, group.pieces[0]);
-                _character.SetColor(tab.Location, _colorPaletteSO.colors[0]);
             }
 
             foreach (var color in _colorPaletteSO.colors)
@@ -94,9 +92,11 @@ namespace Masks.Catalog
             }
 
             SelectTab(_tabs[0]);
+            SelectPiece(_pieces[0].PieceSO);
+            SelectColor(_colorPaletteSO.colors[^1]);
             
-            Randomize(false);
-
+            UpdateContinueButton();
+            
             var seq = DOTween.Sequence();
             seq.AppendInterval(0.1f);
             seq.Append(_content.DOAnchorPosY(0.0f, 0.5f).SetEase(Ease.OutBack));
@@ -107,7 +107,9 @@ namespace Masks.Catalog
         private void OnTabClicked(CatalogTabUI tab)
         {
             if (_activeTab == tab) return;
+            
             SelectTab(tab);
+            UpdateContinueButton();
         }
 
         private void SelectTab(CatalogTabUI tabToSelect)
@@ -126,7 +128,17 @@ namespace Masks.Catalog
             LoadItems(tabToSelect.Location);
 
             var currentPiece = _character.GetPieceAtLocation(tabToSelect.Location);
-            SelectPiece(currentPiece ?? _pieces[0].PieceSO);
+            if (currentPiece != null)
+            {
+                SelectPiece(currentPiece);
+            }
+            else
+            {
+                foreach (var piece in _pieces)
+                {
+                    piece.SetSelected(false);
+                }
+            }
         }
 
         private void LoadItems(eMaskPieceLocation location)
@@ -161,6 +173,7 @@ namespace Masks.Catalog
             }
 
             SelectPiece(piece.PieceSO, animate: true);
+            UpdateContinueButton();
         }
 
         private void SelectPiece(MaskPieceSO pieceSO, bool animate = false)
@@ -215,15 +228,12 @@ namespace Masks.Catalog
 
         private void Randomize()
         {
-            Randomize(true);
-        }
-        
-        private void Randomize(bool animate)
-        {
-            _character.RandomizeAllPieces(animate);
+            _character.RandomizeAllPieces(true);
 
             SelectPiece(_character.GetPieceAtLocation(_activeTab.Location));
             SelectColor(_character.GetColorAtLocation(_activeTab.Location));
+            
+            UpdateContinueButton();
         }
 
         private IEnumerator ConfirmCor()
@@ -242,6 +252,22 @@ namespace Masks.Catalog
             _detailsUI.Show();
 
             _confirmCor = null;
+        }
+
+        private void UpdateContinueButton()
+        {
+            foreach (eMaskPieceLocation loc in Enum.GetValues(typeof(eMaskPieceLocation)))
+            {
+                if (loc == eMaskPieceLocation.Unknown) continue;
+
+                if (_character.GetPieceAtLocation(loc) == null)
+                {
+                    _confirmButton.Interactable = false;
+                    return;
+                }
+            }
+            
+            _confirmButton.Interactable = true;
         }
     }
 }
