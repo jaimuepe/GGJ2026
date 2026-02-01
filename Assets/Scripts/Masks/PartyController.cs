@@ -58,25 +58,22 @@ namespace Masks
 
             for (var i = 0; i < data.Count && i < _partyGuestSlots.Count; i++)
             {
-                var guest = Instantiate(_partyGuestPrefab);
-                guest.SetData(data[i]);
-                guest.name = data[i].player_name;
+                var slot = _partyGuestSlots[i];
+                slot.Guest.SetData(data[i]);
+                slot.Guest.name = data[i].player_name;
 
-                _guests.Add(guest);
-
-                _partyGuestSlots[i].Bind(guest);
+                _guests.Add(slot.Guest);
+                _partyGuestSlots[i].PlayDefaultState();
             }
 
             // if we retrieve less characters than slots we will randomize the rest
             for (var i = data.Count; i < _partyGuestSlots.Count; i++)
             {
-                var guest = Instantiate(_partyGuestPrefab);
-                var guestCharacter = guest.GetComponentInChildren<Character>();
-
-                guestCharacter.RandomizeAllPieces(false);
-                _guests.Add(guest);
-
-                _partyGuestSlots[i].Bind(guest);
+                var slot = _partyGuestSlots[i];
+                slot.Guest.Character.RandomizeAllPieces(false);
+                
+                _guests.Add(slot.Guest);
+                _partyGuestSlots[i].PlayDefaultState();
             }
 
             _birthdayBoy.Character.RandomizeAllPieces(false);

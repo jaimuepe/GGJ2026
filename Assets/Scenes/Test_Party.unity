@@ -510,6 +510,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6666930838541096256, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
+      propertyPath: _stub
+      value: 
+      objectReference: {fileID: 791490412}
+    - target: {fileID: 6666930838541096256, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
       propertyPath: _animationState
       value: Greeting
       objectReference: {fileID: 0}
@@ -792,6 +796,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205571036}
   m_CullTransparentMesh: 1
+--- !u!114 &222511090 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5734875118622938888, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
+  m_PrefabInstance: {fileID: 2264861450582775552}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 201084945cd34109ab487f19ca7bd9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Masks.PartyGuest
 --- !u!1 &228117944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2379,6 +2394,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &791490412 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5734875118622938888, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
+  m_PrefabInstance: {fileID: 152077352}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 201084945cd34109ab487f19ca7bd9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Masks.PartyGuest
 --- !u!1 &806775337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,6 +2626,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
   cheerAnimation: Clap
+--- !u!114 &924491063 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5734875118622938888, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
+  m_PrefabInstance: {fileID: 1598559267}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 201084945cd34109ab487f19ca7bd9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Masks.PartyGuest
 --- !u!1 &968496335
 GameObject:
   m_ObjectHideFlags: 0
@@ -3967,6 +4004,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
   cheerAnimation: Clap
+--- !u!114 &1569784404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5734875118622938888, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
+  m_PrefabInstance: {fileID: 1816751429}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 201084945cd34109ab487f19ca7bd9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Masks.PartyGuest
 --- !u!1 &1591093099
 GameObject:
   m_ObjectHideFlags: 0
@@ -4118,6 +4166,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6666930838541096256, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
+      propertyPath: _stub
+      value: 
+      objectReference: {fileID: 924491063}
     - target: {fileID: 6666930838541096256, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
       propertyPath: _animationState
       value: Dance_03
@@ -4513,6 +4565,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6666930838541096256, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
+      propertyPath: _stub
+      value: 
+      objectReference: {fileID: 1569784404}
     - target: {fileID: 6666930838541096256, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
       propertyPath: _animationState
       value: Jump_01
@@ -5465,6 +5521,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6666930838541096256, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
+      propertyPath: _stub
+      value: 
+      objectReference: {fileID: 222511090}
     - target: {fileID: 6666930838541096256, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
       propertyPath: _animationState
       value: Dance_01

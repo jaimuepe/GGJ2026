@@ -815,6 +815,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3214123183301318942, guid: ac22a77f81590d2438dd0ab215ab2237, type: 3}
+      propertyPath: '_faces.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3214123183301318942, guid: ac22a77f81590d2438dd0ab215ab2237, type: 3}
+      propertyPath: '_faces.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3214123183301318942, guid: ac22a77f81590d2438dd0ab215ab2237, type: 3}
+      propertyPath: '_faces.Array.data[2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3214123183301318942, guid: ac22a77f81590d2438dd0ab215ab2237, type: 3}
+      propertyPath: '_faces.Array.data[3]'
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3432215872446606612, guid: ac22a77f81590d2438dd0ab215ab2237, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
