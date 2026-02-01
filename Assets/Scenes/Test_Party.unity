@@ -505,6 +505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  cheerAnimation: Clap
 --- !u!1 &228117944
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 1
+  cheerAnimation: Clap
 --- !u!1 &255792430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,6 +1048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  cheerAnimation: Clap
 --- !u!1 &412606399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,6 +1136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  cheerAnimation: Clap
 --- !u!1 &501046698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1988,6 +1992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  cheerAnimation: Jump_01
 --- !u!1 &895476694
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,6 +2038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  cheerAnimation: Clap
 --- !u!4 &1044419665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6536954977630744158, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
@@ -2435,6 +2441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  cheerAnimation: Jump_01
 --- !u!1 &1096459422
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,6 +2487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  cheerAnimation: Clap
 --- !u!1 &1100098584
 GameObject:
   m_ObjectHideFlags: 0
@@ -2525,6 +2533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  cheerAnimation: Clap
 --- !u!1 &1228257871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2833,6 +2842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  cheerAnimation: Jump_01
 --- !u!4 &1483883417 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6536954977630744158, guid: df9474cc991884c4ba7e0af94e8bce90, type: 3}
@@ -3058,6 +3068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  cheerAnimation: Clap
 --- !u!1 &1591093099
 GameObject:
   m_ObjectHideFlags: 0
@@ -3683,6 +3694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  cheerAnimation: Clap
 --- !u!1 &1841761487
 GameObject:
   m_ObjectHideFlags: 0
@@ -4098,6 +4110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.BlowCandleSlot
   reservedForPlayer: 0
+  cheerAnimation: Clap
 --- !u!1001 &2058881529
 PrefabInstance:
   m_ObjectHideFlags: 0

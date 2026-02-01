@@ -96,12 +96,12 @@ namespace Masks
 
             Utils.SetLayerRecursive(_playerVisualsObject, LayerMask.NameToLayer("Default"));
             
-            _birthdayBoy.PlayState("Idle", Random.value);
-            _playableCharacter.PlayState("Idle", Random.value);
+            _birthdayBoy.PlayState("IdleForced", Random.value);
+            _playableCharacter.PlayState("IdleForced", Random.value);
 
             foreach (var guest in _guests)
             {
-                guest.PlayState("Idle", Random.value);
+                guest.PlayState("IdleForced", Random.value);
             }
 
             var slots = FindObjectsByType<BlowCandleSlot>(FindObjectsSortMode.None);
@@ -120,12 +120,12 @@ namespace Masks
             }
             else
             {
-                var slot = restOfSlots[0];
+                playerSlot = restOfSlots[0];
                 restOfSlots.RemoveAt(0);
 
                 _playableCharacter.transform.SetPositionAndRotation(
-                    slot.transform.position,
-                    slot.transform.rotation);
+                    playerSlot.transform.position,
+                    playerSlot.transform.rotation);
             }
 
             var n = Mathf.Min(_guests.Count, restOfSlots.Count);
@@ -167,11 +167,13 @@ namespace Masks
             
             yield return new WaitForSeconds(1.0f);
 
-            _playableCharacter.PlayState("Clap",  Random.value);
+            var offset = playerSlot.cheerAnimation == "Clap" ? Random.value : 0.0f;
+            _playableCharacter.PlayState(playerSlot.cheerAnimation,  offset);
 
             for (var i = 0; i < _guests.Count; i++)
             {
-                _guests[i].PlayState("Clap",  Random.value);
+                offset = restOfSlots[i].cheerAnimation == "Clap" ? Random.value : 0.0f;
+                _guests[i].PlayState(restOfSlots[i].cheerAnimation,  offset);
             }
 
             yield return new WaitForSeconds(5.0f);
