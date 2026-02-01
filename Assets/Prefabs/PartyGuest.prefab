@@ -299,6 +299,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterStub
       objectReference: {fileID: 0}
+    - target: {fileID: 8861718208675423320, guid: ac22a77f81590d2438dd0ab215ab2237, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
