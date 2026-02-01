@@ -30,7 +30,7 @@ namespace Masks
         {
             var seq = DOTween.Sequence();
             seq.Append(transform.DOScale(1.0f, 0.3f).SetEase(Ease.OutBack));
-            seq.AppendInterval(2.0f);
+            seq.AppendInterval(3.0f);
             seq.AppendCallback(Hide);
         }
 

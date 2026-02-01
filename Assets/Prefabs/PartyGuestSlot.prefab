@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75a19da5b964fb6ad099edaa8441046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Masks.PartyGuestSlot
-  _stub: {fileID: 1320300203038742507}
+  _stub: {fileID: 5734875118622938888}
+  _animationState: 
+  _normalizedTime: 0
 --- !u!1001 &6669329593387981590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103,11 +105,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 277ac1a960825fe4cb865e9114ed42d1, type: 3}
---- !u!1 &1320300203038742507 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5682577254931238141, guid: 277ac1a960825fe4cb865e9114ed42d1, type: 3}
+--- !u!114 &5734875118622938888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1375965567925292062, guid: 277ac1a960825fe4cb865e9114ed42d1, type: 3}
   m_PrefabInstance: {fileID: 6669329593387981590}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 201084945cd34109ab487f19ca7bd9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Masks.PartyGuest
 --- !u!4 &6216219480792862480 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 777510040702653446, guid: 277ac1a960825fe4cb865e9114ed42d1, type: 3}

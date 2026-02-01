@@ -37,7 +37,9 @@ namespace Masks
             yield return new WaitForSeconds(0.5f);
             
             var bubble = Instantiate(_bubbleMessagePrefab, _overlayCanvas.transform, false);
-            bubble.SetData(_birthdayKid.bubbleAnchor, "I wish for everyone to come on my next birthday");
+            bubble.SetData(_birthdayKid.bubbleAnchor, "I wish... for everyone to come on my next birthday!");
+            bubble.gameObject.SetActive(true);
+            
             bubble.Show(duration: 2.0f);
             
             yield return new WaitForSeconds(3.0f);
