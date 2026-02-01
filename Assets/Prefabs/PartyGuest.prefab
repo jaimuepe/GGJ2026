@@ -107,8 +107,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5615270664321782497}
   - component: {fileID: 5186983388405811084}
-  - component: {fileID: 1934127508594187963}
-  - component: {fileID: 1047809309096386730}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -124,7 +122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5234295098615431171}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.99706584, z: 0.07654882, w: 0}
+  m_LocalRotation: {x: -0.000000010698821, y: 0.9970659, z: -0.07654883, w: -0.000000111657386}
   m_LocalPosition: {x: 0.0000009536743, y: 1.97, z: 6.280001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -151,7 +149,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 448629361726387528}
+    TrackingTarget: {fileID: 0}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -174,45 +172,6 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
---- !u!114 &1934127508594187963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5234295098615431171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 625c14eee3ad46c99df7c7c891ef668a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineThirdPersonFollow
-  Damping: {x: 0.1, y: 0.5, z: 0.3}
-  ShoulderOffset: {x: 0, y: 1.57, z: 8.28}
-  VerticalArmLength: 0.4
-  CameraSide: 1
-  CameraDistance: 2
-  AvoidObstacles:
-    Enabled: 0
-    CollisionFilter:
-      serializedVersion: 2
-      m_Bits: 1
-    IgnoreTag: 
-    CameraRadius: 0.2
-    DampingIntoCollision: 0
-    DampingFromCollision: 0.5
---- !u!114 &1047809309096386730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5234295098615431171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineHardLookAt
-  LookAtOffset: {x: 0, y: 1, z: 0}
 --- !u!1 &5682577254931238141
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +222,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Masks.PartyGuest
   _character: {fileID: 2391035810835831138}
   _camera: {fileID: 5186983388405811084}
-  _bubbleMessage: {fileID: 0}
   bubbleAnchor: {fileID: 8353888038585452243}
 --- !u!1001 &987544404583399548
 PrefabInstance:
