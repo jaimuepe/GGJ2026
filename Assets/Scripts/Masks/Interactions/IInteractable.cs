@@ -15,8 +15,7 @@ namespace Masks.Interactions
         void Focus();
 
         void Unfocus();
-
-
+        
         void ReceiveInput();
     }
 }

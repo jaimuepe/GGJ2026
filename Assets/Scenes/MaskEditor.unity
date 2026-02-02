@@ -5068,10 +5068,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 616401176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1315375647
 MonoBehaviour:
@@ -6505,10 +6505,10 @@ MonoBehaviour:
   m_Texture: {fileID: 2800000, guid: da328c517fd0ad0409c7813f685a80e5, type: 3}
   m_UVRect:
     serializedVersion: 2
-    x: 2.3624809
-    y: 2.3624809
+    x: 3.15994
+    y: 3.15994
     width: 8
-    height: 4.5
+    height: 3.5322404
 --- !u!222 &1560358548
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8470,14 +8470,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 205564778767475985, guid: fd952ddf73458f4408a3a02bbb2d2fe8, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4111555972944215982, guid: fd952ddf73458f4408a3a02bbb2d2fe8, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4111555972944215982, guid: fd952ddf73458f4408a3a02bbb2d2fe8, type: 3}
-      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4462120827161917389, guid: fd952ddf73458f4408a3a02bbb2d2fe8, type: 3}

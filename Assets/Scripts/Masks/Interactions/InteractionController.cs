@@ -3,7 +3,6 @@
 using System.Collections;
 using StarterAssets;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Masks.Interactions
 {
@@ -12,10 +11,11 @@ namespace Masks.Interactions
         [SerializeField] private BoxCollider _interactableShape;
         [SerializeField] private LayerMask _interactableMask;
         [SerializeField] private InteractionBubbleUI _bubble;
-        [SerializeField] private PlayerInput _playerInput;
 
         [SerializeField] private GameObject _visualsObject;
         [SerializeField] private ThirdPersonController _characterController;
+
+        [SerializeField] private StarterAssetsInputs _inputs;
 
         private IInteractable? _current;
 
@@ -26,6 +26,16 @@ namespace Masks.Interactions
             HideBubble();
         }
 
+        private void OnEnable()
+        {
+            _inputs.onInteractionPressed += TryInteract;
+        }
+
+        private void OnDisable()
+        {
+            _inputs.onInteractionPressed -= TryInteract;
+        }
+
         private readonly Collider[] _cachedResults = new Collider[1];
 
         private void Update()
@@ -34,12 +44,6 @@ namespace Masks.Interactions
                 _current.HasInteractionStarted &&
                 !_current.IsInteractionCompleted)
             {
-                if (_current!.NeedsInput &&
-                    _playerInput.actions["interact"].WasPressedThisFrame())
-                {
-                    _current.ReceiveInput();
-                }
-
                 return;
             }
 
@@ -80,11 +84,6 @@ namespace Masks.Interactions
                     _current = null;
                 }
             }
-
-            if (_playerInput.actions["interact"].WasPressedThisFrame() && _current != null)
-            {
-                Interact();
-            }
         }
 
         private void ShowBubble()
@@ -95,6 +94,14 @@ namespace Masks.Interactions
         private void HideBubble()
         {
             _bubble.Hide();
+        }
+
+        private void TryInteract()
+        {
+            if (_current != null)
+            {
+                Interact();
+            }
         }
 
         private void Interact()
@@ -113,9 +120,9 @@ namespace Masks.Interactions
             HideBubble();
 
             yield return new WaitUntil(() => _current.IsInteractionCompleted);
-            
+
             Utils.SetLayerRecursive(_visualsObject, LayerMask.NameToLayer("Default"));
-            
+
             _current = null;
             _interactCor = null;
 

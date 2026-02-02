@@ -27,8 +27,8 @@ namespace Masks.Catalog
         [SerializeField] private TextMeshProUGUI _messageCounter;
         [SerializeField] private TextMeshProUGUI _nameCounter;
 
-        [SerializeField] private int _minMessageLength = 5;
-        [SerializeField] private int _minNameLength = 4;
+        [SerializeField] private int _minMessageLength = 3;
+        [SerializeField] private int _minNameLength = 3;
 
         public void Show()
         {
@@ -169,8 +169,8 @@ namespace Masks.Catalog
 
         private void UpdateButton()
         {
-            _confirmButton.Interactable = _messageField.text.Length > _minMessageLength &&
-                                          _nameField.text.Length > _minNameLength;
+            _confirmButton.Interactable = _messageField.text.Length >= _minMessageLength &&
+                                          _nameField.text.Length >= _minNameLength;
         }
 
         private void UpdateMessageCounter()
