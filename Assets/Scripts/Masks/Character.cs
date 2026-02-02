@@ -22,12 +22,12 @@ namespace Masks
 
     public class Character : MonoBehaviour
     {
-        [SerializeField] private MaskPiecesCatalogSO _catalogSO;
-        [SerializeField] private ColorPaletteSO _colorPaletteSO;
+        [SerializeField] private MaskPiecesCatalogSO _catalogSO = null!;
+        [SerializeField] private ColorPaletteSO _colorPaletteSO = null!;
 
-        [SerializeField] private Transform _allPropsContainer;
+        [SerializeField] private Transform _allPropsContainer = null!;
 
-        [SerializeField] private GameObject[] _faces;
+        [SerializeField] private GameObject[] _faces = null!;
         
         private readonly Dictionary<eMaskPieceLocation, PieceInfo> _currentPieces = new();
 
@@ -35,7 +35,7 @@ namespace Masks
 
         public string PlayerName { get; private set; } = "Unknown";
 
-        public string Message { get; private set; }
+        public string Message { get; private set; } = "Lorem Ipsum";
 
         public DateTime AttendanceDate { get; private set; }
 

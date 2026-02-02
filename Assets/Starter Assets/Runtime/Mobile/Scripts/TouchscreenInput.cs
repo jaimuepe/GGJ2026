@@ -8,16 +8,15 @@ using UnityEngine.UIElements;
 
 public class TouchscreenInput : MonoBehaviour
 {
-    [Header("Settings")] 
+    [Header("Settings")]
     [Tooltip("Move joystick magnitude is in [-1;1] range, this multiply it before sending it to move event")]
     public float MoveMagnitudeMultiplier = 1.0f;
 
     public bool InvertLookY;
-    
-    [Header("Events")]
-    public UnityEvent<Vector2> MoveEvent;
+
+    [Header("Events")] public UnityEvent<Vector2> MoveEvent;
     public UnityEvent<bool> InteractEvent;
-    
+
     private VirtualJoystick m_MoveJoystick;
 
     private UIDocument m_Document;
@@ -35,19 +34,28 @@ public class TouchscreenInput : MonoBehaviour
         root.style.right = Screen.width - safeArea.xMax;
         root.style.top = Screen.height - safeArea.yMax;
         root.style.bottom = safeArea.yMin;
-        
+
         var joystickMove = m_Document.rootVisualElement.Q<VisualElement>("JoystickMove");
-        
+
         m_MoveJoystick = new VirtualJoystick(joystickMove);
         m_MoveJoystick.JoystickEvent.AddListener(mov =>
         {
             MoveEvent.Invoke(mov * MoveMagnitudeMultiplier);
-        });;
+        });
+
+        root.RegisterCallback<ClickEvent>(evt =>
+        {
+            if (evt.target != root)
+                return;
+            
+            InteractEvent.Invoke(true);
+        });
         
-        var interactButton = m_Document.rootVisualElement.Q<VisualElement>("ButtonJump");
-        interactButton.RegisterCallback<ClickEvent>(evt => { InteractEvent.Invoke(true); });
+        root.pickingMode = PickingMode.Position;
+        Debug.Log(root.pickingMode);
     }
 }
+
 public class VirtualJoystick
 {
     public VisualElement BaseElement;
@@ -59,7 +67,7 @@ public class VirtualJoystick
     {
         BaseElement = root;
         Thumbstick = root.Q<VisualElement>("JoystickHandle");
-            
+
         BaseElement.RegisterCallback<PointerDownEvent>(HandlePress);
         BaseElement.RegisterCallback<PointerMoveEvent>(HandleDrag);
         BaseElement.RegisterCallback<PointerUpEvent>(HandleRelease);
@@ -73,22 +81,22 @@ public class VirtualJoystick
     void HandleRelease(PointerUpEvent evt)
     {
         BaseElement.ReleasePointer(evt.pointerId);
-            
+
         Thumbstick.style.left = Length.Percent(50);
         Thumbstick.style.top = Length.Percent(50);
-        
+
         JoystickEvent.Invoke(Vector2.zero);
     }
 
     void HandleDrag(PointerMoveEvent evt)
     {
         if (!BaseElement.HasPointerCapture(evt.pointerId)) return;
-            
+
         var width = BaseElement.contentRect.width;
         var center = new Vector3(width / 2, width / 2);
         var centerToPosition = evt.localPosition - center;
 
-        if (centerToPosition.magnitude > width/2)
+        if (centerToPosition.magnitude > width / 2)
         {
             centerToPosition = centerToPosition.normalized * width / 2;
         }

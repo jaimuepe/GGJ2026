@@ -184,12 +184,6 @@ namespace StarterAssets
                 transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
                 QueryTriggerInteraction.Ignore);
-
-            // update animator if using character
-            if (_hasAnimator)
-            {
-                _animator.SetBool(_animIDGrounded, Grounded);
-            }
         }
 
         private void CameraRotation()
@@ -277,7 +271,6 @@ namespace StarterAssets
             if (_hasAnimator)
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
         }
 
@@ -287,13 +280,6 @@ namespace StarterAssets
             {
                 // reset the fall timeout timer
                 _fallTimeoutDelta = FallTimeout;
-
-                // update animator if using character
-                if (_hasAnimator)
-                {
-                    _animator.SetBool(_animIDJump, false);
-                    _animator.SetBool(_animIDFreeFall, false);
-                }
 
                 // stop our velocity dropping infinitely when grounded
                 if (_verticalVelocity < 0.0f)
@@ -306,12 +292,6 @@ namespace StarterAssets
                 {
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-
-                    // update animator if using character
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDJump, true);
-                    }
                 }
 
                 // jump timeout
@@ -329,14 +309,6 @@ namespace StarterAssets
                 if (_fallTimeoutDelta >= 0.0f)
                 {
                     _fallTimeoutDelta -= Time.deltaTime;
-                }
-                else
-                {
-                    // update animator if using character
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDFreeFall, true);
-                    }
                 }
 
                 // if we are not grounded, do not jump

@@ -12,7 +12,7 @@ namespace Masks.Catalog
     {
         [SerializeField] private RectTransform _content;
         [SerializeField] private RectTransform _titleContent;
-        
+
         [SerializeField] private GameButton _confirmButton;
 
         [SerializeField] private GameObject _blocker;
@@ -78,14 +78,14 @@ namespace Masks.Catalog
         private IEnumerator ConfirmCor()
         {
             _blocker.SetActive(true);
-            
+
             var seq = DOTween.Sequence();
             seq.Append(_titleContent.DOAnchorPosY(-1200.0f, 0.5f).SetEase(Ease.InBack));
             seq.Insert(0.3f, _content.DOAnchorPosY(-1200.0f, 0.5f).SetEase(Ease.InBack));
             seq.AppendCallback(() => { _blocker.SetActive(false); });
 
             yield return seq.WaitForCompletion();
-            
+
             _blocker.SetActive(false);
 
             yield return _loading.Show().WaitForCompletion();
@@ -94,13 +94,24 @@ namespace Masks.Catalog
             var playerMessage = _messageField.text;
 
             _character.SetNameAndMessage(playerName, playerMessage);
-            
-            string? errorMsg = null;
-            var completed = false;
 
-            var server = Server.Instance;
+            yield return RetrievePartyGuestsCor();
             
-            server.Send(
+            yield return SendPlayerDataCor();
+
+            yield return new WaitForSeconds(1.0f);
+
+            SceneTransitionUI.Instance.LoadSceneWithTransition("Test_Party");
+
+            _confirmCor = null;
+        }
+
+        private IEnumerator SendPlayerDataCor()
+        {
+            var completed = false;
+            string? errorMsg = null;
+
+            Server.Instance.Send(
                 _character,
                 () => completed = true,
                 errCode =>
@@ -117,13 +128,16 @@ namespace Masks.Catalog
             }
 
             PersistentStoreObject.Instance.Store(_character);
+        }
 
+        private IEnumerator RetrievePartyGuestsCor()
+        {
             var partyGuests = new List<PlayerData>();
 
-            completed = false;
-            errorMsg = null;
+            var completed = false;
+            string? errorMsg = null;
 
-            server.RetrieveOtherPlayers(
+            Server.Instance.RetrieveOtherPlayers(
                 playersData =>
                 {
                     if (playersData != null)
@@ -147,12 +161,6 @@ namespace Masks.Catalog
             }
 
             PersistentStoreObject.Instance.StorePartyGuests(partyGuests);
-            
-            yield return new WaitForSeconds(1.0f);
-
-            SceneTransitionUI.Instance.LoadSceneWithTransition("Test_Party");
-            
-            _confirmCor = null;
         }
 
         private void OnMessageUpdated(string text)

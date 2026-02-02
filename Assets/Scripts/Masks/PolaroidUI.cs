@@ -24,6 +24,10 @@ namespace Masks
         {
             var c = _polaroidView.color;
             _polaroidView.color = new Color(c.r, c.g, c.b, 0.0f);
+
+#if UNITY_WEBGL
+            _closeButton.gameObject.SetActive(false);
+#endif
         }
 
         private void Start()

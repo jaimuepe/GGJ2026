@@ -1,8 +1,12 @@
 ﻿#nullable enable
 
 using System.Collections;
+using System.Collections.Generic;
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 namespace Masks.Interactions
 {
@@ -17,6 +21,8 @@ namespace Masks.Interactions
 
         [SerializeField] private StarterAssetsInputs _inputs;
 
+        [SerializeField] private UIDocument _uiDocument;
+        
         private IInteractable? _current;
 
         private Coroutine? _interactCor;
@@ -100,6 +106,12 @@ namespace Masks.Interactions
         {
             if (_current != null)
             {
+                if (_current.HasInteractionStarted &&
+                    !_current.IsInteractionCompleted)
+                {
+                    return;
+                }
+                
                 Interact();
             }
         }
